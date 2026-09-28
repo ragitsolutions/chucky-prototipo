@@ -1,0 +1,16 @@
+# Hostinger sirve con LiteSpeed, que respeta este fichero.
+
+# Codificación: sin esto, las tildes y las eñes pueden salir mal si el
+# servidor no declara UTF-8 por su cuenta. El <meta charset> del HTML ya lo
+# cubre; esto es la segunda capa.
+AddDefaultCharset UTF-8
+
+# Que ningún buscador lo indexe, aunque alguien enlace la dirección.
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow"
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# No listar el contenido de la carpeta.
+Options -Indexes

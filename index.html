@@ -1,0 +1,1595 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prototipo chuckyfitness</title>
+<meta name="description" content="Prototipo visual de la plataforma chuckyfitness. Contenido de ejemplo.">
+<!-- Prototipo privado para enseñar al cliente: que no lo indexe ningún buscador. -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Space+Grotesk:wght@500;600;700&display=swap">
+
+<style>
+/* ===========================================================================
+   TOKENS — cinco paletas, cada una con su juego claro y su juego oscuro.
+   El mapeo claro/oscuro se escribe UNA vez al final; las paletas solo
+   redefinen los pares --l-* y --d-*.
+   =========================================================================== */
+
+:root {
+  /* CLÍNICA */
+  --l-bg: oklch(0.988 0.003 230);   --d-bg: oklch(0.178 0.014 245);
+  --l-sf: oklch(1 0 0);             --d-sf: oklch(0.222 0.016 245);
+  --l-sf2: oklch(0.958 0.007 235);  --d-sf2: oklch(0.278 0.018 245);
+  --l-fg: oklch(0.235 0.018 245);   --d-fg: oklch(0.955 0.005 230);
+  --l-mu: oklch(0.468 0.019 245);   --d-mu: oklch(0.735 0.016 240);
+  --l-ln: oklch(0.902 0.008 240);   --d-ln: oklch(0.312 0.014 245);
+  --l-pr: oklch(0.475 0.083 192);   --d-pr: oklch(0.775 0.098 190);
+  --l-op: oklch(0.995 0.004 190);   --d-op: oklch(0.195 0.028 195);
+  --l-ac: oklch(0.945 0.023 192);   --d-ac: oklch(0.318 0.037 195);
+  --l-oa: oklch(0.36 0.062 192);    --d-oa: oklch(0.875 0.062 190);
+  --l-ok: oklch(0.49 0.105 155);    --d-ok: oklch(0.775 0.125 155);
+  --l-wn: oklch(0.52 0.115 70);     --d-wn: oklch(0.815 0.125 78);
+  --l-dg: oklch(0.505 0.185 27);    --d-dg: oklch(0.735 0.155 25);
+}
+
+:root[data-palette="bosque"] {
+  --l-bg: oklch(0.987 0.005 150);   --d-bg: oklch(0.176 0.014 155);
+  --l-sf: oklch(1 0 0);             --d-sf: oklch(0.22 0.017 155);
+  --l-sf2: oklch(0.955 0.012 150);  --d-sf2: oklch(0.278 0.019 155);
+  --l-fg: oklch(0.235 0.02 155);    --d-fg: oklch(0.955 0.006 150);
+  --l-mu: oklch(0.462 0.022 155);   --d-mu: oklch(0.735 0.018 152);
+  --l-ln: oklch(0.898 0.012 150);   --d-ln: oklch(0.31 0.016 155);
+  --l-pr: oklch(0.44 0.095 155);    --d-pr: oklch(0.775 0.11 152);
+  --l-op: oklch(0.995 0.005 150);   --d-op: oklch(0.19 0.03 155);
+  --l-ac: oklch(0.94 0.03 150);     --d-ac: oklch(0.318 0.04 155);
+  --l-oa: oklch(0.35 0.07 155);     --d-oa: oklch(0.875 0.07 152);
+  --l-ok: oklch(0.5 0.1 195);       --d-ok: oklch(0.78 0.1 195);
+  --l-wn: oklch(0.52 0.115 70);     --d-wn: oklch(0.815 0.125 78);
+  --l-dg: oklch(0.505 0.185 27);    --d-dg: oklch(0.735 0.155 25);
+}
+
+:root[data-palette="indigo"] {
+  --l-bg: oklch(0.987 0.004 270);   --d-bg: oklch(0.175 0.018 275);
+  --l-sf: oklch(1 0 0);             --d-sf: oklch(0.22 0.022 275);
+  --l-sf2: oklch(0.955 0.01 270);   --d-sf2: oklch(0.278 0.025 275);
+  --l-fg: oklch(0.235 0.025 275);   --d-fg: oklch(0.955 0.006 270);
+  --l-mu: oklch(0.462 0.025 275);   --d-mu: oklch(0.735 0.02 272);
+  --l-ln: oklch(0.898 0.012 270);   --d-ln: oklch(0.312 0.022 275);
+  --l-pr: oklch(0.455 0.135 268);   --d-pr: oklch(0.765 0.11 268);
+  --l-op: oklch(0.995 0.004 270);   --d-op: oklch(0.19 0.04 270);
+  --l-ac: oklch(0.94 0.028 270);    --d-ac: oklch(0.32 0.05 270);
+  --l-oa: oklch(0.36 0.09 268);     --d-oa: oklch(0.87 0.075 268);
+  --l-ok: oklch(0.49 0.105 155);    --d-ok: oklch(0.775 0.125 155);
+  --l-wn: oklch(0.52 0.115 70);     --d-wn: oklch(0.815 0.125 78);
+  --l-dg: oklch(0.505 0.185 27);    --d-dg: oklch(0.735 0.155 25);
+}
+
+:root[data-palette="arena"] {
+  --l-bg: oklch(0.978 0.012 85);    --d-bg: oklch(0.185 0.012 60);
+  --l-sf: oklch(0.995 0.005 85);    --d-sf: oklch(0.228 0.014 60);
+  --l-sf2: oklch(0.945 0.018 80);   --d-sf2: oklch(0.285 0.015 60);
+  --l-fg: oklch(0.245 0.018 60);    --d-fg: oklch(0.955 0.008 80);
+  --l-mu: oklch(0.468 0.025 60);    --d-mu: oklch(0.735 0.018 70);
+  --l-ln: oklch(0.888 0.018 80);    --d-ln: oklch(0.318 0.016 60);
+  --l-pr: oklch(0.475 0.115 42);    --d-pr: oklch(0.765 0.105 48);
+  --l-op: oklch(0.995 0.006 60);    --d-op: oklch(0.19 0.03 45);
+  --l-ac: oklch(0.935 0.035 60);    --d-ac: oklch(0.325 0.04 50);
+  --l-oa: oklch(0.37 0.08 45);      --d-oa: oklch(0.865 0.07 55);
+  --l-ok: oklch(0.475 0.1 150);     --d-ok: oklch(0.775 0.12 150);
+  --l-wn: oklch(0.48 0.125 65);     --d-wn: oklch(0.815 0.125 78);
+  --l-dg: oklch(0.485 0.185 25);    --d-dg: oklch(0.735 0.155 25);
+}
+
+:root[data-palette="grafito"] {
+  --l-bg: oklch(0.985 0.001 250);   --d-bg: oklch(0.17 0.004 250);
+  --l-sf: oklch(1 0 0);             --d-sf: oklch(0.215 0.004 250);
+  --l-sf2: oklch(0.952 0.002 250);  --d-sf2: oklch(0.272 0.004 250);
+  --l-fg: oklch(0.205 0.004 250);   --d-fg: oklch(0.955 0.002 250);
+  --l-mu: oklch(0.455 0.004 250);   --d-mu: oklch(0.73 0.003 250);
+  --l-ln: oklch(0.895 0.002 250);   --d-ln: oklch(0.305 0.004 250);
+  --l-pr: oklch(0.285 0.008 250);   --d-pr: oklch(0.925 0.002 250);
+  --l-op: oklch(0.985 0.004 120);   --d-op: oklch(0.21 0.004 250);
+  --l-ac: oklch(0.925 0.085 122);   --d-ac: oklch(0.32 0.06 128);
+  --l-oa: oklch(0.33 0.085 130);    --d-oa: oklch(0.87 0.15 124);
+  --l-ok: oklch(0.465 0.115 140);   --d-ok: oklch(0.8 0.16 130);
+  --l-wn: oklch(0.52 0.115 70);     --d-wn: oklch(0.815 0.125 78);
+  --l-dg: oklch(0.505 0.185 27);    --d-dg: oklch(0.735 0.155 25);
+}
+
+/* Mapeo claro/oscuro, escrito una sola vez ------------------------------- */
+:root {
+  --bg: var(--l-bg); --sf: var(--l-sf); --sf2: var(--l-sf2);
+  --fg: var(--l-fg); --mu: var(--l-mu); --ln: var(--l-ln);
+  --pr: var(--l-pr); --op: var(--l-op); --ac: var(--l-ac); --oa: var(--l-oa);
+  --ok: var(--l-ok); --wn: var(--l-wn); --dg: var(--l-dg);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: var(--d-bg); --sf: var(--d-sf); --sf2: var(--d-sf2);
+    --fg: var(--d-fg); --mu: var(--d-mu); --ln: var(--d-ln);
+    --pr: var(--d-pr); --op: var(--d-op); --ac: var(--d-ac); --oa: var(--d-oa);
+    --ok: var(--d-ok); --wn: var(--d-wn); --dg: var(--d-dg);
+  }
+}
+:root[data-theme="dark"] {
+  --bg: var(--d-bg); --sf: var(--d-sf); --sf2: var(--d-sf2);
+  --fg: var(--d-fg); --mu: var(--d-mu); --ln: var(--d-ln);
+  --pr: var(--d-pr); --op: var(--d-op); --ac: var(--d-ac); --oa: var(--d-oa);
+  --ok: var(--d-ok); --wn: var(--d-wn); --dg: var(--d-dg);
+}
+
+/* Tipografías ------------------------------------------------------------ */
+:root { --display: "Outfit", system-ui, sans-serif; }
+:root[data-type="editorial"] { --display: "Fraunces", Georgia, serif; }
+:root[data-type="tecnica"]   { --display: "Space Grotesk", system-ui, sans-serif; }
+:root { --body: "Inter", system-ui, -apple-system, sans-serif; }
+
+/* ===========================================================================
+   BASE
+   =========================================================================== */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,h2,h3,h4 { font-family: var(--display); margin: 0; font-weight: 600; text-wrap: balance; letter-spacing: -0.015em; line-height: 1.15; }
+p { margin: 0; }
+a { color: inherit; }
+button, select, input, textarea { font: inherit; color: inherit; }
+
+:focus-visible { outline: 2px solid var(--pr); outline-offset: 2px; border-radius: 4px; }
+
+.mono { font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; font-variant-numeric: tabular-nums; }
+.muted { color: var(--mu); }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+.eyebrow { font-size: 0.72rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--pr); font-weight: 600; }
+
+/* ===========================================================================
+   BARRA DE CONTROL (cromado del prototipo)
+   =========================================================================== */
+.studio {
+  position: sticky; top: 0; z-index: 60;
+  background: color-mix(in oklab, var(--sf) 88%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--ln);
+}
+.studio-in { max-width: 1120px; margin: 0 auto; padding: 10px 20px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.studio .brand { font-family: var(--display); font-weight: 700; font-size: 1.02rem; margin-right: auto; }
+.studio .brand small { display: block; font-family: var(--body); font-weight: 400; font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mu); }
+.field { display: flex; align-items: center; gap: 7px; }
+.field label { font-size: 0.7rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--mu); font-weight: 600; }
+select {
+  background: var(--sf); border: 1px solid var(--ln); color: var(--fg);
+  border-radius: 8px; padding: 8px 10px; font-size: 0.85rem; min-height: 40px; cursor: pointer;
+}
+.iconbtn {
+  background: var(--sf); border: 1px solid var(--ln); border-radius: 8px;
+  width: 40px; height: 40px; display: grid; place-items: center; cursor: pointer; font-size: 1rem;
+}
+
+/* Conmutador de vistas */
+.views { border-bottom: 1px solid var(--ln); background: var(--sf); position: sticky; top: 61px; z-index: 50; }
+.views-in { max-width: 1120px; margin: 0 auto; padding: 0 20px; display: flex; gap: 4px; overflow-x: auto; }
+.viewtab {
+  background: none; border: 0; border-bottom: 2px solid transparent;
+  padding: 13px 14px; cursor: pointer; white-space: nowrap;
+  font-size: 0.88rem; font-weight: 500; color: var(--mu); min-height: 46px;
+}
+.viewtab[aria-selected="true"] { color: var(--pr); border-bottom-color: var(--pr); font-weight: 600; }
+
+.view { display: none; }
+.view.on { display: block; }
+
+/* ===========================================================================
+   PIEZAS COMUNES
+   =========================================================================== */
+.btn {
+  background: var(--pr); color: var(--op); border: 0; border-radius: 10px;
+  padding: 11px 18px; font-weight: 600; font-size: 0.92rem; cursor: pointer;
+  min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  transition: opacity .15s;
+}
+.btn:hover { opacity: .88; }
+.btn.ghost { background: transparent; color: var(--fg); border: 1px solid var(--ln); }
+.btn.soft { background: var(--ac); color: var(--oa); }
+.btn.danger { background: var(--dg); color: var(--op); }
+.btn.sm { padding: 7px 12px; font-size: 0.82rem; min-height: 38px; border-radius: 8px; }
+
+.card { background: var(--sf); border: 1px solid var(--ln); border-radius: 14px; padding: 18px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; background: var(--ac); color: var(--oa); border-radius: 999px; padding: 5px 11px; font-size: 0.76rem; font-weight: 600; }
+.chip.line { background: transparent; border: 1px solid var(--ln); color: var(--mu); }
+.chip.ok { background: transparent; border: 1px solid var(--ok); color: var(--ok); }
+.chip.wn { background: transparent; border: 1px solid var(--wn); color: var(--wn); }
+.chip.dg { background: transparent; border: 1px solid var(--dg); color: var(--dg); }
+
+.grid { display: grid; gap: 16px; }
+.g2 { grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); }
+.g3 { grid-template-columns: repeat(auto-fit, minmax(230px,1fr)); }
+.row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.between { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.stack { display: flex; flex-direction: column; }
+
+hr { border: 0; border-top: 1px solid var(--ln); margin: 0; }
+
+.note { font-size: 0.78rem; color: var(--mu); font-style: italic; }
+
+/* ===========================================================================
+   WEB PÚBLICA
+   =========================================================================== */
+.hero { padding: 72px 0 64px; }
+.hero h1 { font-size: clamp(2.3rem, 7vw, 4rem); }
+.hero .lede { font-size: 1.1rem; color: var(--mu); max-width: 46ch; margin-top: 18px; }
+.hero .cta { margin-top: 30px; }
+.hero-figure {
+  background: linear-gradient(150deg, var(--ac), var(--sf2));
+  border: 1px solid var(--ln); border-radius: 20px; min-height: 280px;
+  display: grid; place-items: center; padding: 26px; text-align: center;
+}
+.stat { display: flex; flex-direction: column; gap: 2px; }
+.stat b { font-family: var(--display); font-size: 1.9rem; line-height: 1; }
+.stat span { font-size: 0.78rem; color: var(--mu); }
+
+.band { padding: 60px 0; border-top: 1px solid var(--ln); }
+.band h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); }
+.band > .wrap > .lede { color: var(--mu); max-width: 56ch; margin-top: 12px; }
+.sec-head { margin-bottom: 30px; }
+
+.step { display: flex; gap: 14px; align-items: flex-start; }
+.step .n { flex: 0 0 auto; width: 30px; height: 30px; border-radius: 999px; background: var(--ac); color: var(--oa); display: grid; place-items: center; font-weight: 700; font-size: 0.85rem; }
+
+.quote { font-family: var(--display); font-size: 1.02rem; line-height: 1.45; }
+.who { display: flex; align-items: center; gap: 10px; margin-top: 14px; }
+.avatar { width: 34px; height: 34px; border-radius: 999px; background: var(--ac); color: var(--oa); display: grid; place-items: center; font-weight: 700; font-size: 0.8rem; flex: 0 0 auto; }
+
+details.faq { border-bottom: 1px solid var(--ln); padding: 4px 0; }
+details.faq summary { cursor: pointer; padding: 14px 0; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 12px; min-height: 44px; align-items: center; }
+details.faq summary::-webkit-details-marker { display: none; }
+details.faq summary::after { content: "+"; color: var(--pr); font-size: 1.3rem; line-height: 1; }
+details.faq[open] summary::after { content: "−"; }
+details.faq p { padding-bottom: 16px; color: var(--mu); max-width: 62ch; }
+
+.formgrid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); }
+.inp { display: flex; flex-direction: column; gap: 6px; }
+.inp label { font-size: 0.82rem; font-weight: 600; }
+.inp input, .inp textarea, .inp select {
+  background: var(--bg); border: 1px solid var(--ln); border-radius: 10px;
+  padding: 11px 12px; min-height: 44px; width: 100%;
+}
+.full { grid-column: 1 / -1; }
+
+footer.site { border-top: 1px solid var(--ln); padding: 34px 0 46px; font-size: 0.86rem; color: var(--mu); }
+footer.site a { text-decoration: none; }
+footer.site a:hover { text-decoration: underline; }
+
+/* ===========================================================================
+   MARCO DE MÓVIL (área del alumno)
+   =========================================================================== */
+.screenpick { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 22px; }
+.pick { background: var(--sf); border: 1px solid var(--ln); border-radius: 999px; padding: 8px 13px; font-size: 0.8rem; cursor: pointer; min-height: 40px; color: var(--mu); }
+.pick[aria-pressed="true"] { background: var(--pr); color: var(--op); border-color: var(--pr); font-weight: 600; }
+
+.phone {
+  width: 100%; max-width: 390px; margin: 0 auto;
+  border: 10px solid color-mix(in oklab, var(--fg) 82%, var(--bg));
+  border-radius: 40px; overflow: hidden; background: var(--bg);
+  box-shadow: 0 22px 50px -24px color-mix(in oklab, var(--fg) 55%, transparent);
+}
+.phone-top { height: 26px; background: var(--sf); display: grid; place-items: center; }
+.phone-top i { display: block; width: 84px; height: 5px; border-radius: 999px; background: var(--ln); }
+.screen { display: none; min-height: 600px; flex-direction: column; }
+.screen.on { display: flex; }
+.appbar { padding: 14px 16px 10px; display: flex; align-items: center; justify-content: space-between; gap: 10px; border-bottom: 1px solid var(--ln); }
+.appbar h3 { font-size: 1.12rem; }
+.appbody { padding: 16px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+.tabbar { display: flex; border-top: 1px solid var(--ln); background: var(--sf); }
+.tabbar button { flex: 1; background: none; border: 0; padding: 10px 2px 12px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 0.62rem; color: var(--mu); min-height: 52px; }
+.tabbar button[aria-pressed="true"] { color: var(--pr); font-weight: 700; }
+.tabbar .ic { font-size: 1.05rem; line-height: 1; }
+
+.minicard { background: var(--sf); border: 1px solid var(--ln); border-radius: 13px; padding: 14px; }
+.exrow { display: flex; gap: 11px; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--ln); }
+.exrow:last-child { border-bottom: 0; }
+.thumb { width: 52px; height: 42px; border-radius: 8px; background: var(--sf2); border: 1px solid var(--ln); display: grid; place-items: center; font-size: 0.9rem; flex: 0 0 auto; position: relative; }
+.thumb.play::after { content: "▶"; font-size: 0.6rem; color: var(--op); background: var(--pr); width: 18px; height: 18px; border-radius: 999px; display: grid; place-items: center; position: absolute; }
+
+.setrow { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--ln); }
+.setrow:last-child { border-bottom: 0; }
+.setrow .idx { width: 24px; height: 24px; border-radius: 6px; background: var(--sf2); display: grid; place-items: center; font-size: 0.74rem; font-weight: 700; flex: 0 0 auto; }
+.setrow input[type="text"] { width: 58px; background: var(--bg); border: 1px solid var(--ln); border-radius: 7px; padding: 7px 8px; text-align: center; font-size: 0.85rem; }
+.tick { width: 34px; height: 34px; border-radius: 9px; border: 1px solid var(--ln); background: var(--bg); cursor: pointer; display: grid; place-items: center; margin-left: auto; flex: 0 0 auto; }
+.tick[aria-pressed="true"] { background: var(--ok); border-color: var(--ok); color: var(--bg); }
+.setrow.done .idx { background: var(--ok); color: var(--bg); }
+
+.timer { text-align: center; padding: 14px; border-radius: 13px; background: var(--ac); color: var(--oa); }
+.timer b { font-family: var(--display); font-size: 2.3rem; display: block; line-height: 1; font-variant-numeric: tabular-nums; }
+
+.bubble { max-width: 82%; padding: 9px 13px; border-radius: 15px; font-size: 0.87rem; }
+.bubble.them { background: var(--sf2); border-bottom-left-radius: 5px; align-self: flex-start; }
+.bubble.me { background: var(--pr); color: var(--op); border-bottom-right-radius: 5px; align-self: flex-end; }
+
+.progress { height: 7px; border-radius: 999px; background: var(--sf2); overflow: hidden; }
+.progress i { display: block; height: 100%; background: var(--pr); border-radius: 999px; }
+
+/* ===========================================================================
+   PANEL DEL ENTRENADOR
+   =========================================================================== */
+.desk { border: 1px solid var(--ln); border-radius: 16px; overflow: hidden; background: var(--sf); }
+.desk-top { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-bottom: 1px solid var(--ln); background: var(--sf2); }
+.dot { width: 10px; height: 10px; border-radius: 999px; background: var(--ln); }
+.desk-top span { font-size: 0.74rem; color: var(--mu); margin-left: 8px; }
+.desk-body { display: grid; grid-template-columns: 196px 1fr; min-height: 560px; }
+.side { border-right: 1px solid var(--ln); padding: 12px 10px; display: flex; flex-direction: column; gap: 2px; background: var(--sf2); }
+.side button { background: none; border: 0; text-align: left; padding: 10px 11px; border-radius: 9px; cursor: pointer; font-size: 0.85rem; color: var(--mu); min-height: 42px; }
+.side button[aria-pressed="true"] { background: var(--pr); color: var(--op); font-weight: 600; }
+.side .lbl { font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--mu); padding: 14px 11px 5px; font-weight: 700; }
+.deskmain { padding: 20px; background: var(--bg); overflow-x: auto; }
+.pane { display: none; }
+.pane.on { display: block; }
+
+table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+th, td { text-align: left; padding: 11px 12px 11px 0; border-bottom: 1px solid var(--ln); vertical-align: middle; }
+th { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mu); font-weight: 700; }
+.tablewrap { overflow-x: auto; }
+
+.dtabs { display: flex; gap: 3px; border-bottom: 1px solid var(--ln); margin-bottom: 18px; overflow-x: auto; }
+.dtab { background: none; border: 0; border-bottom: 2px solid transparent; padding: 10px 12px; cursor: pointer; color: var(--mu); font-size: 0.85rem; white-space: nowrap; min-height: 42px; }
+.dtab[aria-selected="true"] { color: var(--pr); border-bottom-color: var(--pr); font-weight: 600; }
+.dpane { display: none; }
+.dpane.on { display: block; }
+
+.builder { display: grid; grid-template-columns: 215px 1fr; gap: 16px; }
+.lib { border: 1px solid var(--ln); border-radius: 12px; padding: 12px; background: var(--sf); max-height: 430px; overflow-y: auto; }
+.libitem { border: 1px solid var(--ln); border-radius: 9px; padding: 9px 10px; margin-bottom: 7px; font-size: 0.82rem; cursor: grab; background: var(--bg); }
+.libitem:hover { border-color: var(--pr); }
+.libitem small { display: block; color: var(--mu); font-size: 0.7rem; }
+.day { border: 1px solid var(--ln); border-radius: 12px; margin-bottom: 12px; background: var(--sf); }
+.day-h { padding: 11px 14px; border-bottom: 1px solid var(--ln); display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.day-b { padding: 6px 14px 12px; }
+.slot { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--ln); }
+.slot:last-child { border-bottom: 0; }
+.slot .presc { display: flex; gap: 5px; flex-wrap: wrap; }
+.presc input { width: 52px; background: var(--bg); border: 1px solid var(--ln); border-radius: 6px; padding: 5px 6px; font-size: 0.76rem; text-align: center; }
+.drop { border: 1px dashed var(--ln); border-radius: 9px; padding: 13px; text-align: center; color: var(--mu); font-size: 0.8rem; margin-top: 8px; }
+
+.uploadbar { height: 7px; background: var(--sf2); border-radius: 999px; overflow: hidden; }
+.uploadbar i { display: block; height: 100%; background: var(--pr); }
+
+.danger-box { border: 1px solid var(--dg); border-radius: 12px; padding: 15px; background: color-mix(in oklab, var(--dg) 8%, transparent); }
+
+.demo-flag {
+  background: color-mix(in oklab, var(--wn) 12%, transparent);
+  border: 1px solid var(--wn); color: var(--fg);
+  border-radius: 10px; padding: 11px 14px; font-size: 0.82rem;
+}
+
+@media (max-width: 860px) {
+  .desk-body { grid-template-columns: 1fr; }
+  .side { flex-direction: row; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--ln); }
+  .side .lbl { display: none; }
+  .side button { white-space: nowrap; }
+  .builder { grid-template-columns: 1fr; }
+  .views { top: 0; position: static; }
+  .studio { position: static; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+
+<!-- ======================= BARRA DE CONTROL ======================= -->
+<header class="studio">
+  <div class="studio-in">
+    <div class="brand">chuckyfitness<small>Prototipo visual</small></div>
+
+    <div class="field">
+      <label for="pal">Paleta</label>
+      <select id="pal">
+        <option value="clinica">Clínica — verde azulado</option>
+        <option value="bosque">Bosque — verde natural</option>
+        <option value="indigo">Índigo — azul profundo</option>
+        <option value="arena">Arena — hueso y terracota</option>
+        <option value="grafito">Grafito — con lima</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="typ">Titular</label>
+      <select id="typ">
+        <option value="geometrica">Outfit</option>
+        <option value="editorial">Fraunces</option>
+        <option value="tecnica">Space Grotesk</option>
+      </select>
+    </div>
+
+    <button class="iconbtn" id="mode" aria-label="Cambiar entre modo claro y oscuro">◐</button>
+  </div>
+</header>
+
+<nav class="views" aria-label="Vistas del prototipo">
+  <div class="views-in" role="tablist">
+    <button class="viewtab" role="tab" aria-selected="true" data-view="publica">Web pública</button>
+    <button class="viewtab" role="tab" aria-selected="false" data-view="alumno">Área del alumno</button>
+    <button class="viewtab" role="tab" aria-selected="false" data-view="panel">Panel del entrenador</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ========================================================================
+     VISTA 1 — WEB PÚBLICA
+     ===================================================================== -->
+<section class="view on" id="v-publica">
+
+  <div class="hero">
+    <div class="wrap grid g2" style="align-items:center; gap:44px">
+      <div>
+        <p class="eyebrow">Entrenamiento personal en Madrid</p>
+        <h1 style="margin-top:14px">Tu entrenamiento no se parece al de nadie</h1>
+        <p class="lede">
+          Nada de rutinas genéricas descargadas de internet. Diseño tu plan
+          mirando tu historial, tus lesiones y los días que puedes entrenar de
+          verdad. Y lo ajusto cada semana con lo que registras.
+        </p>
+        <div class="cta row">
+          <button class="btn">Solicitar una plaza</button>
+          <button class="btn ghost">Ver cómo funciona</button>
+        </div>
+        <div class="row" style="gap:32px; margin-top:34px">
+          <div class="stat"><b>9</b><span>años entrenando</span></div>
+          <div class="stat"><b>24</b><span>alumnos activos</span></div>
+          <div class="stat"><b>1:1</b><span>siempre</span></div>
+        </div>
+      </div>
+      <div class="hero-figure">
+        <div>
+          <div style="font-size:2.6rem">🏋️</div>
+          <p class="muted" style="font-size:0.84rem; margin-top:10px">
+            Aquí irá una fotografía real del entrenador en su espacio de trabajo
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Servicios</p>
+        <h2 style="margin-top:10px">Tres formas de trabajar conmigo</h2>
+        <p class="lede">Todas incluyen rutina personalizada, vídeos de cada ejercicio y seguimiento de tu progreso.</p>
+      </div>
+      <div class="demo-flag" style="margin-bottom:18px">
+        Precios, servicios y datos del entrenador de ejemplo. Los definitivos los
+        fija el entrenador.
+      </div>
+      <div class="grid g3">
+        <div class="card">
+          <h3>Online</h3>
+          <p class="muted" style="margin-top:8px; font-size:0.9rem">
+            Tu rutina en el móvil, revisada cada semana. Hablamos por chat
+            siempre que lo necesites.
+          </p>
+          <hr style="margin:15px 0">
+          <div class="stack" style="gap:7px; font-size:0.86rem">
+            <span>· Rutina actualizada cada semana</span>
+            <span>· Vídeo de demostración por ejercicio</span>
+            <span>· Chat directo conmigo</span>
+            <span>· Seguimiento de medidas y cargas</span>
+          </div>
+          <p class="mono" style="margin-top:16px; font-size:1.3rem; font-weight:600">60 €<span class="muted" style="font-size:0.8rem">/mes</span></p>
+        </div>
+        <div class="card" style="border-color:var(--pr); border-width:2px">
+          <div class="between"><h3>Presencial</h3><span class="chip">Más elegido</span></div>
+          <p class="muted" style="margin-top:8px; font-size:0.9rem">
+            Dos sesiones por semana conmigo en sala, más tu plan para los días
+            que entrenas solo.
+          </p>
+          <hr style="margin:15px 0">
+          <div class="stack" style="gap:7px; font-size:0.86rem">
+            <span>· 2 sesiones semanales dirigidas</span>
+            <span>· Corrección de técnica en directo</span>
+            <span>· Todo lo del plan online</span>
+            <span>· Revisión de medidas cada mes</span>
+          </div>
+          <p class="mono" style="margin-top:16px; font-size:1.3rem; font-weight:600">180 €<span class="muted" style="font-size:0.8rem">/mes</span></p>
+        </div>
+        <div class="card">
+          <h3>Readaptación</h3>
+          <p class="muted" style="margin-top:8px; font-size:0.9rem">
+            Para volver después de una lesión, coordinándome con tu
+            fisioterapeuta.
+          </p>
+          <hr style="margin:15px 0">
+          <div class="stack" style="gap:7px; font-size:0.86rem">
+            <span>· Valoración inicial completa</span>
+            <span>· Progresión revisada cada semana</span>
+            <span>· Coordinación con tu fisio</span>
+            <span>· Sesiones presenciales</span>
+          </div>
+          <p class="mono" style="margin-top:16px; font-size:1.3rem; font-weight:600">A medida</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="wrap grid g2" style="gap:44px; align-items:start">
+      <div>
+        <p class="eyebrow">Quién soy</p>
+        <h2 style="margin-top:10px">Chucky Fernández</h2>
+        <p class="muted" style="margin-top:14px">
+          Licenciado en Ciencias de la Actividad Física y especializado en
+          readaptación. Llevo nueve años trabajando uno a uno, y no me interesa
+          tener cien alumnos: me interesa que los que tengo entrenen bien.
+        </p>
+        <p class="muted" style="margin-top:12px">
+          Trabajo con gente que ya ha probado el gimnasio por su cuenta y se ha
+          estancado, y con quien vuelve de una lesión y tiene miedo de volver a
+          romperse.
+        </p>
+        <div class="row" style="margin-top:20px">
+          <span class="chip line">CAFyD · Universidad de Granada</span>
+          <span class="chip line">Readaptación deportiva</span>
+          <span class="chip line">Entrenamiento de fuerza</span>
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow">Cómo funciona</p>
+        <div class="stack" style="gap:20px; margin-top:16px">
+          <div class="step"><span class="n">1</span><div><b>Hablamos</b><p class="muted" style="font-size:0.88rem">Me cuentas de dónde vienes, qué te duele y cuántos días puedes entrenar de verdad.</p></div></div>
+          <div class="step"><span class="n">2</span><div><b>Valoración</b><p class="muted" style="font-size:0.88rem">Medimos, revisamos movilidad y fijamos objetivos concretos, no propósitos.</p></div></div>
+          <div class="step"><span class="n">3</span><div><b>Tu plan</b><p class="muted" style="font-size:0.88rem">Recibes acceso a tu área privada con la rutina, los vídeos y tus objetivos.</p></div></div>
+          <div class="step"><span class="n">4</span><div><b>Ajuste continuo</b><p class="muted" style="font-size:0.88rem">Registras lo que haces y yo lo veo. Si algo no funciona, lo cambio.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Testimonios</p>
+        <h2 style="margin-top:10px">Lo que dicen quienes entrenan aquí</h2>
+      </div>
+      <div class="demo-flag" style="margin-bottom:18px">
+        Testimonios de ejemplo para ver el diseño. Se sustituirán por opiniones
+        reales de alumnos, con su permiso.
+      </div>
+      <div class="grid g3">
+        <div class="card">
+          <p class="quote">«Llevaba dos años haciendo siempre lo mismo. En cuatro meses he pasado de 40 a 70 kilos en sentadilla y, sobre todo, ya sé por qué hago cada cosa.»</p>
+          <div class="who"><span class="avatar">LR</span><div class="stack"><b style="font-size:0.86rem">Lucía R.</b><span class="muted" style="font-size:0.78rem">Plan online · 6 meses</span></div></div>
+        </div>
+        <div class="card">
+          <p class="quote">«Venía de una hernia y tenía pánico a coger peso. Chucky no me dejó correr. Un año después entreno tranquila y sin dolor.»</p>
+          <div class="who"><span class="avatar">NB</span><div class="stack"><b style="font-size:0.86rem">Nerea B.</b><span class="muted" style="font-size:0.78rem">Readaptación · 1 año</span></div></div>
+        </div>
+        <div class="card">
+          <p class="quote">«Lo que más valoro es abrir el móvil en el gimnasio y saber exactamente qué toca, con qué peso y por qué. Se acabó improvisar.»</p>
+          <div class="who"><span class="avatar">MD</span><div class="stack"><b style="font-size:0.86rem">Marcos D.</b><span class="muted" style="font-size:0.78rem">Plan online · 3 meses</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="wrap" style="max-width:780px">
+      <div class="sec-head">
+        <p class="eyebrow">Dudas frecuentes</p>
+        <h2 style="margin-top:10px">Lo que suelen preguntarme</h2>
+      </div>
+      <details class="faq"><summary>¿Necesito experiencia previa?</summary><p>No. De hecho empezar sin vicios adquiridos suele ser más rápido. Lo que sí necesito es que me digas la verdad sobre cuántos días puedes entrenar.</p></details>
+      <details class="faq"><summary>¿Puedo entrenar en cualquier gimnasio?</summary><p>Sí. En la valoración me dices qué material tienes disponible y la rutina se construye con eso. Si solo tienes mancuernas y una barra, trabajamos con eso.</p></details>
+      <details class="faq"><summary>¿Qué pasa si me lesiono o me pongo enfermo?</summary><p>Me lo dices por el chat y adaptamos o pausamos. Pausar la cuenta no cuesta nada y tu histórico se conserva entero.</p></details>
+      <details class="faq"><summary>¿Cómo se registran mis datos de salud?</summary><p>El peso, las medidas y el historial de lesiones son datos de categoría especial. Solo se recogen con tu consentimiento explícito, puedes descargarlos cuando quieras y puedes pedir que se borren.</p></details>
+      <details class="faq"><summary>¿Hay permanencia?</summary><p>No. Se paga mes a mes y puedes dejarlo cuando quieras avisando con quince días.</p></details>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="wrap" style="max-width:720px">
+      <div class="sec-head">
+        <p class="eyebrow">Contacto</p>
+        <h2 style="margin-top:10px">Cuéntame de dónde vienes</h2>
+        <p class="lede">No hay registro automático: leo cada solicitud y respondo yo. Si encajamos, te abro la cuenta.</p>
+      </div>
+      <form class="formgrid" onsubmit="return false">
+        <div class="inp"><label for="f1">Nombre y apellidos</label><input id="f1" type="text" placeholder="Lucía Ramírez"></div>
+        <div class="inp"><label for="f2">Email</label><input id="f2" type="email" placeholder="lucia@ejemplo.es"></div>
+        <div class="inp"><label for="f3">Teléfono</label><input id="f3" type="tel" placeholder="600 000 000"></div>
+        <div class="inp"><label for="f4">Qué te interesa</label><select id="f4"><option>Plan online</option><option>Presencial</option><option>Readaptación</option><option>Todavía no lo sé</option></select></div>
+        <div class="inp full"><label for="f5">Cuéntame tu situación</label><textarea id="f5" rows="4" placeholder="Qué has entrenado antes, qué te duele, cuántos días puedes…"></textarea></div>
+        <div class="full row" style="align-items:flex-start; gap:10px">
+          <input type="checkbox" id="f6" style="width:19px;height:19px;margin-top:3px;flex:0 0 auto">
+          <label for="f6" style="font-weight:400; font-size:0.84rem; color:var(--mu)">He leído la política de privacidad y acepto que se traten mis datos para responder a esta solicitud.</label>
+        </div>
+        <div class="full"><button class="btn">Enviar solicitud</button></div>
+      </form>
+      <div class="demo-flag" style="margin-top:18px">
+        En el prototipo el formulario no envía nada. En la web real llevará
+        límite de intentos y protección antispam.
+      </div>
+    </div>
+  </div>
+
+  <footer class="site">
+    <div class="wrap between" style="align-items:flex-start; flex-wrap:wrap; gap:24px">
+      <div class="stack" style="gap:6px">
+        <b style="font-family:var(--display); font-size:1.05rem">chuckyfitness</b>
+        <span>Entrenamiento personal · Madrid</span>
+      </div>
+      <div class="stack" style="gap:6px">
+        <a href="#">Aviso legal</a>
+        <a href="#">Política de privacidad</a>
+        <a href="#">Política de cookies</a>
+      </div>
+      <div class="stack" style="gap:6px">
+        <a href="#">Acceso de alumnos</a>
+        <a href="#">Contacto</a>
+      </div>
+    </div>
+    <div class="wrap" style="margin-top:24px">
+      <div class="demo-flag">
+        Los textos legales aún no se pueden redactar: falta decidir si el
+        responsable del tratamiento es el entrenador como autónomo o una
+        sociedad.
+      </div>
+    </div>
+  </footer>
+</section>
+
+<!-- ========================================================================
+     VISTA 2 — ÁREA DEL ALUMNO
+     ===================================================================== -->
+<section class="view" id="v-alumno">
+  <div class="wrap" style="padding-top:32px; padding-bottom:60px">
+
+    <div class="sec-head" style="margin-bottom:22px">
+      <p class="eyebrow">Lo que ve el alumno</p>
+      <h2 style="margin-top:10px; font-size:clamp(1.6rem,4vw,2.1rem)">Pensado para usarse de pie, en el gimnasio, con una mano</h2>
+      <p class="lede">Elige una pantalla para verla dentro del móvil. Las series y el temporizador del modo entrenamiento funcionan de verdad.</p>
+    </div>
+
+    <div class="screenpick" role="group" aria-label="Pantallas del alumno">
+      <button class="pick" aria-pressed="false" data-scr="login">Acceso</button>
+      <button class="pick" aria-pressed="false" data-scr="alta">Alta y consentimiento</button>
+      <button class="pick" aria-pressed="true"  data-scr="hoy">Hoy</button>
+      <button class="pick" aria-pressed="false" data-scr="rutina">Mi rutina</button>
+      <button class="pick" aria-pressed="false" data-scr="entrenar">Modo entrenamiento</button>
+      <button class="pick" aria-pressed="false" data-scr="progreso">Progreso</button>
+      <button class="pick" aria-pressed="false" data-scr="medidas">Medidas</button>
+      <button class="pick" aria-pressed="false" data-scr="chat">Chat</button>
+      <button class="pick" aria-pressed="false" data-scr="perfil">Perfil</button>
+      <button class="pick" aria-pressed="false" data-scr="vacio">Sin rutina todavía</button>
+    </div>
+
+    <div class="phone">
+      <div class="phone-top"><i></i></div>
+
+      <!-- ACCESO -->
+      <div class="screen" id="s-login">
+        <div class="appbody" style="justify-content:center; gap:18px; text-align:center">
+          <div>
+            <h3 style="font-size:1.5rem">chuckyfitness</h3>
+            <p class="muted" style="font-size:0.85rem; margin-top:6px">Entra con la cuenta que te abrió tu entrenador</p>
+          </div>
+          <div class="inp" style="text-align:left"><label for="l1">Email</label><input id="l1" type="email" value="lucia@ejemplo.es"></div>
+          <div class="inp" style="text-align:left"><label for="l2">Contraseña</label><input id="l2" type="password" value="········"></div>
+          <button class="btn" style="width:100%">Entrar</button>
+          <a href="#" style="font-size:0.84rem; color:var(--pr)">He olvidado mi contraseña</a>
+          <hr>
+          <p class="muted" style="font-size:0.78rem">
+            No hay registro abierto. Las cuentas se crean por invitación del
+            entrenador.
+          </p>
+        </div>
+      </div>
+
+      <!-- ALTA -->
+      <div class="screen" id="s-alta">
+        <div class="appbar"><h3>Bienvenida, Lucía</h3><span class="chip line">3 de 4</span></div>
+        <div class="appbody">
+          <div class="progress"><i style="width:75%"></i></div>
+          <div class="minicard">
+            <b style="font-size:0.92rem">Historial de lesiones</b>
+            <p class="muted" style="font-size:0.8rem; margin-top:5px">Cuéntame cualquier cosa que me deba hacer ir con cuidado.</p>
+            <textarea rows="3" style="width:100%; margin-top:10px; background:var(--bg); border:1px solid var(--ln); border-radius:9px; padding:10px">Esguince de tobillo derecho en 2023, recuperado. Molestia ocasional en hombro izquierdo al hacer press por encima de la cabeza.</textarea>
+          </div>
+          <div class="minicard">
+            <b style="font-size:0.92rem">Disponibilidad semanal</b>
+            <div class="row" style="gap:6px; margin-top:10px">
+              <span class="chip">L</span><span class="chip line">M</span><span class="chip">X</span>
+              <span class="chip line">J</span><span class="chip">V</span><span class="chip line">S</span><span class="chip line">D</span>
+            </div>
+            <p class="muted" style="font-size:0.8rem; margin-top:9px">60 minutos por sesión</p>
+          </div>
+          <div class="minicard" style="border-color:var(--pr)">
+            <div class="row" style="align-items:flex-start; gap:10px">
+              <input type="checkbox" checked style="width:19px;height:19px;margin-top:2px;flex:0 0 auto">
+              <div>
+                <b style="font-size:0.86rem">Consentimiento de datos de salud</b>
+                <p class="muted" style="font-size:0.78rem; margin-top:4px">
+                  Autorizo el tratamiento de mi peso, mis medidas y mi historial
+                  de lesiones para diseñar y ajustar mi entrenamiento. Puedo
+                  retirarlo cuando quiera.
+                </p>
+              </div>
+            </div>
+          </div>
+          <button class="btn" style="width:100%">Continuar</button>
+          <p class="note">Sin marcar esa casilla el alta no avanza: son datos del artículo 9 del RGPD.</p>
+        </div>
+      </div>
+
+      <!-- HOY -->
+      <div class="screen on" id="s-hoy">
+        <div class="appbar">
+          <div><span class="muted" style="font-size:0.74rem">Lunes, 28 de septiembre</span><h3>Hola, Lucía</h3></div>
+          <span class="avatar">LR</span>
+        </div>
+        <div class="appbody">
+          <div class="minicard" style="border-color:var(--pr); border-width:2px">
+            <span class="eyebrow">Entrenamiento de hoy</span>
+            <h4 style="margin-top:7px; font-size:1.18rem">Día 1 — Empuje</h4>
+            <p class="muted" style="font-size:0.82rem; margin-top:4px">3 ejercicios · unos 55 minutos</p>
+            <button class="btn" style="width:100%; margin-top:13px" data-go="entrenar">Empezar entrenamiento</button>
+          </div>
+
+          <div class="minicard">
+            <div class="between"><b style="font-size:0.9rem">Tus objetivos</b><span class="muted" style="font-size:0.76rem">2 activos</span></div>
+            <div class="stack" style="gap:13px; margin-top:12px">
+              <div>
+                <div class="between" style="font-size:0.82rem"><span>Press banca 5RM</span><span class="mono">47,5 / 50 kg</span></div>
+                <div class="progress" style="margin-top:6px"><i style="width:95%"></i></div>
+              </div>
+              <div>
+                <div class="between" style="font-size:0.82rem"><span>Sentadilla 5RM</span><span class="mono ok" style="color:var(--ok)">70 / 70 kg ✓</span></div>
+                <div class="progress" style="margin-top:6px"><i style="width:100%; background:var(--ok)"></i></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="minicard">
+            <b style="font-size:0.9rem">Aviso de tu entrenador</b>
+            <p style="font-size:0.85rem; margin-top:7px">
+              Enhorabuena por los 70 en sentadilla. Objetivo cerrado, subimos el
+              siguiente bloque.
+            </p>
+            <span class="muted" style="font-size:0.74rem; display:block; margin-top:7px">Hace 2 días</span>
+          </div>
+
+          <div class="minicard">
+            <div class="between"><b style="font-size:0.9rem">Próxima sesión</b><span class="chip line">Miércoles</span></div>
+            <p class="muted" style="font-size:0.84rem; margin-top:6px">Día 2 — Tirón</p>
+          </div>
+        </div>
+        <div class="tabbar">
+          <button aria-pressed="true" data-go="hoy"><span class="ic">🏠</span>Hoy</button>
+          <button aria-pressed="false" data-go="rutina"><span class="ic">📋</span>Rutina</button>
+          <button aria-pressed="false" data-go="progreso"><span class="ic">📈</span>Progreso</button>
+          <button aria-pressed="false" data-go="chat"><span class="ic">💬</span>Chat</button>
+          <button aria-pressed="false" data-go="perfil"><span class="ic">👤</span>Perfil</button>
+        </div>
+      </div>
+
+      <!-- RUTINA -->
+      <div class="screen" id="s-rutina">
+        <div class="appbar"><div><span class="muted" style="font-size:0.74rem">Del 3 ago al 27 sep</span><h3>Fuerza — bloque 2</h3></div></div>
+        <div class="appbody">
+          <div class="row" style="gap:6px">
+            <span class="chip">Día 1</span><span class="chip line">Día 2</span><span class="chip line">Día 3</span>
+          </div>
+          <p class="muted" style="font-size:0.82rem">
+            Prioridad al press de banca. Accesorios sin llegar al fallo.
+          </p>
+
+          <div class="minicard">
+            <div class="exrow">
+              <span class="thumb play">🎬</span>
+              <div style="flex:1">
+                <b style="font-size:0.88rem">Press de banca con barra</b>
+                <div class="muted mono" style="font-size:0.76rem">4 × 5 · 47,5 kg · 3 min</div>
+              </div>
+            </div>
+            <div style="padding:9px 0 0; border-top:1px solid var(--ln)">
+              <span class="chip" style="font-size:0.7rem">Nota del entrenador</span>
+              <p style="font-size:0.82rem; margin-top:6px">Si las cuatro series salen limpias, la semana que viene subimos a 50 kg.</p>
+            </div>
+          </div>
+
+          <div class="minicard">
+            <div class="exrow">
+              <span class="thumb">🖼️</span>
+              <div style="flex:1">
+                <b style="font-size:0.88rem">Press militar de pie</b>
+                <div class="muted mono" style="font-size:0.76rem">3 × 8-10 · 25 kg · 2 min</div>
+              </div>
+            </div>
+            <div style="padding:9px 0 0; border-top:1px solid var(--ln)">
+              <span class="chip wn" style="font-size:0.7rem">Ojo</span>
+              <p style="font-size:0.82rem; margin-top:6px">Con el hombro izquierdo: si molesta, para la serie y me lo dices.</p>
+            </div>
+          </div>
+
+          <div class="minicard">
+            <div class="exrow">
+              <span class="thumb">🖼️</span>
+              <div style="flex:1">
+                <b style="font-size:0.88rem">Plancha frontal</b>
+                <div class="muted mono" style="font-size:0.76rem">3 × 45 s · 1 min</div>
+              </div>
+            </div>
+          </div>
+
+          <p class="note">Los vídeos no se cargan hasta que se pulsa reproducir. Nunca se reproducen solos en una lista.</p>
+        </div>
+        <div class="tabbar">
+          <button aria-pressed="false" data-go="hoy"><span class="ic">🏠</span>Hoy</button>
+          <button aria-pressed="true" data-go="rutina"><span class="ic">📋</span>Rutina</button>
+          <button aria-pressed="false" data-go="progreso"><span class="ic">📈</span>Progreso</button>
+          <button aria-pressed="false" data-go="chat"><span class="ic">💬</span>Chat</button>
+          <button aria-pressed="false" data-go="perfil"><span class="ic">👤</span>Perfil</button>
+        </div>
+      </div>
+
+      <!-- MODO ENTRENAMIENTO -->
+      <div class="screen" id="s-entrenar">
+        <div class="appbar">
+          <div><span class="muted" style="font-size:0.74rem">Ejercicio 1 de 3</span><h3>Press de banca</h3></div>
+          <span class="chip ok" id="syncchip">✓ Guardado</span>
+        </div>
+        <div class="appbody">
+          <div class="minicard">
+            <div class="between"><b style="font-size:0.9rem">Objetivo</b><span class="mono" style="font-size:0.84rem">4 × 5 · 47,5 kg</span></div>
+            <p class="muted" style="font-size:0.8rem; margin-top:5px">Tempo 2-1-1-0 · Descanso 3 min</p>
+          </div>
+
+          <div class="minicard">
+            <b style="font-size:0.88rem; display:block; margin-bottom:5px">Marca tus series</b>
+            <div class="setrow"><span class="idx">1</span><input type="text" value="47,5" aria-label="Peso serie 1"><span class="muted" style="font-size:0.78rem">kg</span><input type="text" value="5" aria-label="Repeticiones serie 1"><span class="muted" style="font-size:0.78rem">reps</span><button class="tick" aria-pressed="false" aria-label="Marcar serie 1">✓</button></div>
+            <div class="setrow"><span class="idx">2</span><input type="text" value="47,5" aria-label="Peso serie 2"><span class="muted" style="font-size:0.78rem">kg</span><input type="text" value="5" aria-label="Repeticiones serie 2"><span class="muted" style="font-size:0.78rem">reps</span><button class="tick" aria-pressed="false" aria-label="Marcar serie 2">✓</button></div>
+            <div class="setrow"><span class="idx">3</span><input type="text" value="47,5" aria-label="Peso serie 3"><span class="muted" style="font-size:0.78rem">kg</span><input type="text" value="5" aria-label="Repeticiones serie 3"><span class="muted" style="font-size:0.78rem">reps</span><button class="tick" aria-pressed="false" aria-label="Marcar serie 3">✓</button></div>
+            <div class="setrow"><span class="idx">4</span><input type="text" value="47,5" aria-label="Peso serie 4"><span class="muted" style="font-size:0.78rem">kg</span><input type="text" value="5" aria-label="Repeticiones serie 4"><span class="muted" style="font-size:0.78rem">reps</span><button class="tick" aria-pressed="false" aria-label="Marcar serie 4">✓</button></div>
+          </div>
+
+          <div class="timer">
+            <span style="font-size:0.74rem; letter-spacing:0.1em; text-transform:uppercase; font-weight:700">Descanso</span>
+            <b id="clock">3:00</b>
+            <div class="row" style="justify-content:center; margin-top:10px">
+              <button class="btn sm" id="tstart">Iniciar</button>
+              <button class="btn sm ghost" id="treset">Reiniciar</button>
+            </div>
+          </div>
+
+          <div class="minicard">
+            <b style="font-size:0.88rem">¿Cómo ha ido?</b>
+            <div class="row" style="gap:5px; margin-top:9px">
+              <span class="chip line">RPE 6</span><span class="chip line">7</span><span class="chip">8</span><span class="chip line">9</span><span class="chip line">10</span>
+            </div>
+          </div>
+
+          <button class="btn" style="width:100%">Siguiente ejercicio</button>
+          <p class="note">Guardado optimista: si se cae la red, la pantalla sigue respondiendo y los datos se reenvían solos al recuperarla.</p>
+        </div>
+      </div>
+
+      <!-- PROGRESO -->
+      <div class="screen" id="s-progreso">
+        <div class="appbar"><h3>Tu progreso</h3></div>
+        <div class="appbody">
+          <div class="row" style="gap:6px">
+            <span class="chip">Cargas</span><span class="chip line">Peso corporal</span><span class="chip line">Adherencia</span>
+          </div>
+
+          <div class="minicard">
+            <div class="between"><b style="font-size:0.88rem">Press de banca</b><span class="chip ok">+7,5 kg</span></div>
+            <p class="muted" style="font-size:0.76rem; margin-top:3px">Últimas 8 semanas</p>
+            <svg viewBox="0 0 300 120" style="width:100%; height:auto; margin-top:12px" role="img" aria-label="Progresión del press de banca de 40 a 47,5 kilos en ocho semanas">
+              <line x1="0" y1="100" x2="300" y2="100" stroke="var(--ln)" stroke-width="1"/>
+              <line x1="0" y1="55" x2="300" y2="55" stroke="var(--ln)" stroke-width="1" stroke-dasharray="3 4"/>
+              <polyline points="10,88 51,88 92,70 133,70 174,48 215,48 256,48 290,26" fill="none" stroke="var(--pr)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="290" cy="26" r="4.5" fill="var(--pr)"/>
+              <text x="10" y="116" font-size="10" fill="var(--mu)">jul</text>
+              <text x="266" y="116" font-size="10" fill="var(--mu)">sep</text>
+              <text x="248" y="18" font-size="11" fill="var(--pr)" font-weight="700">47,5 kg</text>
+            </svg>
+          </div>
+
+          <div class="minicard">
+            <div class="between"><b style="font-size:0.88rem">Adherencia</b><span class="chip ok">92 %</span></div>
+            <p class="muted" style="font-size:0.76rem; margin-top:3px">22 de 24 sesiones completadas</p>
+            <div class="row" style="gap:4px; margin-top:12px; flex-wrap:wrap">
+              <span style="width:15px;height:15px;border-radius:3px;background:var(--ok)"></span>
+              <span style="width:15px;height:15px;border-radius:3px;background:var(--ok)"></span>
+              <span style="width:15px;height:15px;border-radius:3px;background:var(--ok)"></span>
+              <span style="width:15px;height:15px;border-radius:3px;background:var(--sf2)"></span>
+              <span style="width:15px;height:15px;border-radius:3px;background:var(--ok)"></span>
+              <span style="width:15px;height:15px;border-radius:3px;background:var(--ok)"></span>
+              <span style="width:15px;height:15px;border-radius:3px;background:var(--ok)"></span>
+              <span style="width:15px;height:15px;border-radius:3px;background:var(--ok)"></span>
+              <span style="width:15px;height:15px;border-radius:3px;background:var(--ok)"></span>
+              <span style="width:15px;height:15px;border-radius:3px;background:var(--sf2)"></span>
+              <span style="width:15px;height:15px;border-radius:3px;background:var(--ok)"></span>
+              <span style="width:15px;height:15px;border-radius:3px;background:var(--ok)"></span>
+            </div>
+          </div>
+
+          <div class="minicard">
+            <b style="font-size:0.88rem">Historial reciente</b>
+            <div class="stack" style="gap:0; margin-top:8px">
+              <div class="exrow"><div style="flex:1"><b style="font-size:0.84rem">Press de banca</b><div class="muted mono" style="font-size:0.74rem">17 sep · 4 × 5 · 47,5 kg · RPE 8</div></div></div>
+              <div class="exrow"><div style="flex:1"><b style="font-size:0.84rem">Sentadilla trasera</b><div class="muted mono" style="font-size:0.74rem">21 ago · 5 × 5 · 70 kg · RPE 8</div></div></div>
+              <div class="exrow"><div style="flex:1"><b style="font-size:0.84rem">Press de banca</b><div class="muted mono" style="font-size:0.74rem">10 sep · 4 × 5 · 45 kg · RPE 9</div></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="tabbar">
+          <button aria-pressed="false" data-go="hoy"><span class="ic">🏠</span>Hoy</button>
+          <button aria-pressed="false" data-go="rutina"><span class="ic">📋</span>Rutina</button>
+          <button aria-pressed="true" data-go="progreso"><span class="ic">📈</span>Progreso</button>
+          <button aria-pressed="false" data-go="chat"><span class="ic">💬</span>Chat</button>
+          <button aria-pressed="false" data-go="perfil"><span class="ic">👤</span>Perfil</button>
+        </div>
+      </div>
+
+      <!-- MEDIDAS -->
+      <div class="screen" id="s-medidas">
+        <div class="appbar"><h3>Peso y medidas</h3><button class="btn sm">Añadir</button></div>
+        <div class="appbody">
+          <div class="minicard">
+            <div class="between"><b style="font-size:0.88rem">Peso corporal</b><span class="chip line">−1,4 kg</span></div>
+            <svg viewBox="0 0 300 110" style="width:100%; height:auto; margin-top:12px" role="img" aria-label="Peso corporal de 62,4 a 61,0 kilos en ocho semanas">
+              <line x1="0" y1="92" x2="300" y2="92" stroke="var(--ln)" stroke-width="1"/>
+              <polyline points="10,30 50,36 90,45 130,39 170,54 210,60 250,57 290,68" fill="none" stroke="var(--pr)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="290" cy="68" r="4.5" fill="var(--pr)"/>
+              <text x="240" y="60" font-size="11" fill="var(--pr)" font-weight="700">61,0</text>
+            </svg>
+          </div>
+          <div class="minicard">
+            <b style="font-size:0.88rem">Última medición · 17 de septiembre</b>
+            <div class="grid" style="grid-template-columns:1fr 1fr; gap:10px; margin-top:11px">
+              <div class="stat"><b style="font-size:1.3rem">61,0</b><span>peso (kg)</span></div>
+              <div class="stat"><b style="font-size:1.3rem">69,6</b><span>cintura (cm)</span></div>
+              <div class="stat"><b style="font-size:1.3rem">96</b><span>cadera (cm)</span></div>
+              <div class="stat"><b style="font-size:1.3rem">55</b><span>muslo (cm)</span></div>
+            </div>
+          </div>
+          <div class="demo-flag">Estos son datos de salud. Se guardan cifrados y puedes descargarlos o borrarlos desde tu perfil.</div>
+        </div>
+        <div class="tabbar">
+          <button aria-pressed="false" data-go="hoy"><span class="ic">🏠</span>Hoy</button>
+          <button aria-pressed="false" data-go="rutina"><span class="ic">📋</span>Rutina</button>
+          <button aria-pressed="true" data-go="progreso"><span class="ic">📈</span>Progreso</button>
+          <button aria-pressed="false" data-go="chat"><span class="ic">💬</span>Chat</button>
+          <button aria-pressed="false" data-go="perfil"><span class="ic">👤</span>Perfil</button>
+        </div>
+      </div>
+
+      <!-- CHAT -->
+      <div class="screen" id="s-chat">
+        <div class="appbar"><div class="row"><span class="avatar">CF</span><div><h3 style="font-size:1rem">Chucky</h3><span class="muted" style="font-size:0.72rem">Tu entrenador</span></div></div></div>
+        <div class="appbody" style="justify-content:flex-end">
+          <div class="bubble them">Hoy el press me ha costado más de lo normal, ¿bajo carga la semana que viene?</div>
+          <div class="bubble me">No, mantenemos. Una semana floja entra dentro de lo normal. Duerme y come bien y lo revisamos el viernes.</div>
+          <div class="bubble me">Enhorabuena por los 70 en sentadilla, por cierto. Objetivo cerrado.</div>
+          <span class="muted" style="font-size:0.7rem; align-self:flex-end">Hace 2 días</span>
+          <div class="row" style="margin-top:8px; gap:7px">
+            <input type="text" placeholder="Escribe un mensaje…" style="flex:1; background:var(--bg); border:1px solid var(--ln); border-radius:999px; padding:11px 15px; min-height:44px">
+            <button class="btn" style="border-radius:999px; width:44px; padding:0" aria-label="Enviar">↑</button>
+          </div>
+        </div>
+        <div class="tabbar">
+          <button aria-pressed="false" data-go="hoy"><span class="ic">🏠</span>Hoy</button>
+          <button aria-pressed="false" data-go="rutina"><span class="ic">📋</span>Rutina</button>
+          <button aria-pressed="false" data-go="progreso"><span class="ic">📈</span>Progreso</button>
+          <button aria-pressed="true" data-go="chat"><span class="ic">💬</span>Chat</button>
+          <button aria-pressed="false" data-go="perfil"><span class="ic">👤</span>Perfil</button>
+        </div>
+      </div>
+
+      <!-- PERFIL -->
+      <div class="screen" id="s-perfil">
+        <div class="appbar"><h3>Tu perfil</h3></div>
+        <div class="appbody">
+          <div class="minicard row" style="gap:13px">
+            <span class="avatar" style="width:52px;height:52px;font-size:1.05rem">LR</span>
+            <div><b>Lucía Ramírez Ortiz</b><div class="muted" style="font-size:0.8rem">Alumna desde marzo de 2026</div></div>
+          </div>
+          <div class="minicard stack" style="gap:0">
+            <div class="exrow" style="cursor:pointer"><div style="flex:1"><b style="font-size:0.86rem">Datos personales</b></div><span class="muted">›</span></div>
+            <div class="exrow" style="cursor:pointer"><div style="flex:1"><b style="font-size:0.86rem">Disponibilidad semanal</b><div class="muted" style="font-size:0.76rem">L · X · V · 60 min</div></div><span class="muted">›</span></div>
+            <div class="exrow" style="cursor:pointer"><div style="flex:1"><b style="font-size:0.86rem">Historial de lesiones</b></div><span class="muted">›</span></div>
+            <div class="exrow" style="cursor:pointer"><div style="flex:1"><b style="font-size:0.86rem">Cambiar contraseña</b></div><span class="muted">›</span></div>
+          </div>
+          <div class="minicard stack" style="gap:0">
+            <div class="exrow" style="cursor:pointer"><div style="flex:1"><b style="font-size:0.86rem">Descargar mis datos</b><div class="muted" style="font-size:0.76rem">JSON o PDF con todo tu histórico</div></div><span class="muted">›</span></div>
+            <div class="exrow" style="cursor:pointer"><div style="flex:1"><b style="font-size:0.86rem">Retirar consentimiento de salud</b><div class="muted" style="font-size:0.76rem">Se borran peso y medidas; la cuenta sigue</div></div><span class="muted">›</span></div>
+            <div class="exrow" style="cursor:pointer"><div style="flex:1"><b style="font-size:0.86rem; color:var(--dg)">Solicitar borrado de mi cuenta</b></div><span class="muted">›</span></div>
+          </div>
+          <button class="btn ghost" style="width:100%">Cerrar sesión</button>
+        </div>
+        <div class="tabbar">
+          <button aria-pressed="false" data-go="hoy"><span class="ic">🏠</span>Hoy</button>
+          <button aria-pressed="false" data-go="rutina"><span class="ic">📋</span>Rutina</button>
+          <button aria-pressed="false" data-go="progreso"><span class="ic">📈</span>Progreso</button>
+          <button aria-pressed="false" data-go="chat"><span class="ic">💬</span>Chat</button>
+          <button aria-pressed="true" data-go="perfil"><span class="ic">👤</span>Perfil</button>
+        </div>
+      </div>
+
+      <!-- ESTADO VACÍO -->
+      <div class="screen" id="s-vacio">
+        <div class="appbar"><div><span class="muted" style="font-size:0.74rem">Martes, 29 de septiembre</span><h3>Hola, Marcos</h3></div><span class="avatar">MD</span></div>
+        <div class="appbody" style="justify-content:center; text-align:center; gap:16px">
+          <div style="font-size:2.6rem">📋</div>
+          <div>
+            <h4 style="font-size:1.1rem">Todavía no tienes rutina</h4>
+            <p class="muted" style="font-size:0.86rem; margin-top:7px">
+              Chucky está preparando tu plan. En cuanto lo publique aparecerá
+              aquí con los ejercicios de cada día.
+            </p>
+          </div>
+          <button class="btn ghost">Escribir a mi entrenador</button>
+          <p class="note">Ninguna pantalla se queda en blanco: cada vista tiene su estado vacío diseñado.</p>
+        </div>
+        <div class="tabbar">
+          <button aria-pressed="true" data-go="hoy"><span class="ic">🏠</span>Hoy</button>
+          <button aria-pressed="false" data-go="rutina"><span class="ic">📋</span>Rutina</button>
+          <button aria-pressed="false" data-go="progreso"><span class="ic">📈</span>Progreso</button>
+          <button aria-pressed="false" data-go="chat"><span class="ic">💬</span>Chat</button>
+          <button aria-pressed="false" data-go="perfil"><span class="ic">👤</span>Perfil</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     VISTA 3 — PANEL DEL ENTRENADOR
+     ===================================================================== -->
+<section class="view" id="v-panel">
+  <div class="wrap" style="padding-top:32px; padding-bottom:60px">
+
+    <div class="sec-head" style="margin-bottom:22px">
+      <p class="eyebrow">Lo que ve el entrenador</p>
+      <h2 style="margin-top:10px; font-size:clamp(1.6rem,4vw,2.1rem)">Control total, alumno por alumno</h2>
+      <p class="lede">Nada es genérico: cada rutina, cada objetivo y cada nota se asignan a una persona concreta.</p>
+    </div>
+
+    <div class="desk">
+      <div class="desk-top">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="mono">chuckyfitness.es/admin</span>
+      </div>
+      <div class="desk-body">
+        <nav class="side" aria-label="Secciones del panel">
+          <span class="lbl">Alumnos</span>
+          <button aria-pressed="true" data-pane="alumnos">Listado</button>
+          <button aria-pressed="false" data-pane="ficha">Ficha del alumno</button>
+          <button aria-pressed="false" data-pane="altas">Altas e invitaciones</button>
+          <span class="lbl">Entrenamiento</span>
+          <button aria-pressed="false" data-pane="builder">Constructor de rutinas</button>
+          <button aria-pressed="false" data-pane="ejercicios">Biblioteca</button>
+          <button aria-pressed="false" data-pane="videos">Vídeos</button>
+          <span class="lbl">Web y registro</span>
+          <button aria-pressed="false" data-pane="contenido">Contenido de la web</button>
+          <button aria-pressed="false" data-pane="auditoria">Auditoría</button>
+        </nav>
+
+        <div class="deskmain">
+
+          <!-- LISTADO -->
+          <div class="pane on" id="p-alumnos">
+            <div class="between" style="margin-bottom:16px">
+              <h3>Alumnos</h3>
+              <button class="btn sm">Invitar alumno</button>
+            </div>
+            <div class="row" style="margin-bottom:14px">
+              <input type="search" placeholder="Buscar por nombre o email…" style="flex:1; min-width:180px; background:var(--sf); border:1px solid var(--ln); border-radius:9px; padding:9px 12px; min-height:42px">
+              <select style="min-height:42px"><option>Todos los estados</option><option>Activos</option><option>Pausados</option><option>De baja</option></select>
+            </div>
+            <div class="row" style="margin-bottom:16px">
+              <span class="chip">Todos · 3</span>
+              <span class="chip wn">Sin rutina asignada · 1</span>
+              <span class="chip dg">Sin entrenar hace +30 días · 1</span>
+            </div>
+            <div class="tablewrap">
+              <table>
+                <thead><tr><th>Alumno</th><th>Estado</th><th>Rutina activa</th><th>Último entreno</th><th>Objetivos</th><th></th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td><div class="row" style="gap:9px"><span class="avatar">LR</span><div><b>Lucía Ramírez</b><div class="muted" style="font-size:0.76rem">Desde mar. 2026</div></div></div></td>
+                    <td><span class="chip ok">Activa</span></td>
+                    <td>Fuerza — bloque 2</td>
+                    <td class="mono">Hace 3 días</td>
+                    <td class="mono">1 activo</td>
+                    <td><button class="btn sm ghost" data-pane="ficha">Abrir</button></td>
+                  </tr>
+                  <tr>
+                    <td><div class="row" style="gap:9px"><span class="avatar">MD</span><div><b>Marcos Díaz</b><div class="muted" style="font-size:0.76rem">Desde ago. 2026</div></div></div></td>
+                    <td><span class="chip ok">Activo</span></td>
+                    <td><span class="chip wn">Sin asignar</span></td>
+                    <td class="muted">Nunca</td>
+                    <td class="mono">0</td>
+                    <td><button class="btn sm ghost">Abrir</button></td>
+                  </tr>
+                  <tr>
+                    <td><div class="row" style="gap:9px"><span class="avatar">NB</span><div><b>Nerea Beltrán</b><div class="muted" style="font-size:0.76rem">Desde nov. 2025</div></div></div></td>
+                    <td><span class="chip line">Pausada</span></td>
+                    <td>Readaptación (completada)</td>
+                    <td class="mono" style="color:var(--dg)">Hace 61 días</td>
+                    <td class="mono">1 activo</td>
+                    <td><button class="btn sm ghost">Abrir</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- FICHA -->
+          <div class="pane" id="p-ficha">
+            <div class="between" style="margin-bottom:14px">
+              <div class="row" style="gap:11px"><span class="avatar" style="width:44px;height:44px;font-size:0.95rem">LR</span><div><h3>Lucía Ramírez Ortiz</h3><span class="muted" style="font-size:0.8rem">lucia@ejemplo.es · 611 111 111</span></div></div>
+              <span class="chip ok">Activa</span>
+            </div>
+
+            <div class="dtabs" role="tablist">
+              <button class="dtab" role="tab" aria-selected="true" data-dt="datos">Datos</button>
+              <button class="dtab" role="tab" aria-selected="false" data-dt="rutinas">Rutinas</button>
+              <button class="dtab" role="tab" aria-selected="false" data-dt="objetivos">Objetivos</button>
+              <button class="dtab" role="tab" aria-selected="false" data-dt="notas">Notas</button>
+              <button class="dtab" role="tab" aria-selected="false" data-dt="medidas">Medidas</button>
+              <button class="dtab" role="tab" aria-selected="false" data-dt="cuenta">Cuenta</button>
+            </div>
+
+            <div class="dpane on" id="d-datos">
+              <div class="grid g2">
+                <div class="card">
+                  <b style="font-size:0.9rem">Datos personales</b>
+                  <div class="grid" style="grid-template-columns:1fr 1fr; gap:11px; margin-top:12px">
+                    <div class="inp"><label>Nombre</label><input value="Lucía"></div>
+                    <div class="inp"><label>Apellidos</label><input value="Ramírez Ortiz"></div>
+                    <div class="inp"><label>Teléfono</label><input value="611 111 111"></div>
+                    <div class="inp"><label>Nacimiento</label><input value="03/09/1994"></div>
+                  </div>
+                </div>
+                <div class="card">
+                  <b style="font-size:0.9rem">Historial de lesiones</b>
+                  <span class="chip dg" style="margin-left:8px; font-size:0.68rem">Dato de salud</span>
+                  <p class="muted" style="font-size:0.85rem; margin-top:10px">Esguince de tobillo derecho en 2023, recuperado. Molestia ocasional en hombro izquierdo al hacer press por encima de la cabeza.</p>
+                  <hr style="margin:13px 0">
+                  <b style="font-size:0.9rem">Disponibilidad</b>
+                  <div class="row" style="gap:5px; margin-top:9px"><span class="chip">L</span><span class="chip line">M</span><span class="chip">X</span><span class="chip line">J</span><span class="chip">V</span></div>
+                  <p class="muted" style="font-size:0.8rem; margin-top:8px">60 minutos por sesión · Consentimiento firmado el 02/03/2026</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="dpane" id="d-rutinas">
+              <div class="between" style="margin-bottom:12px"><b>Rutinas asignadas</b><button class="btn sm">Nueva rutina</button></div>
+              <div class="stack" style="gap:10px">
+                <div class="card between">
+                  <div><b>Fuerza — bloque 2</b><div class="muted" style="font-size:0.8rem">3 ago – 27 sep · 3 días</div></div>
+                  <div class="row"><span class="chip ok">Activa</span><button class="btn sm ghost">Editar</button><button class="btn sm ghost">Duplicar</button></div>
+                </div>
+                <div class="card between">
+                  <div><b>Fuerza — bloque 3 (sin terminar)</b><div class="muted" style="font-size:0.8rem">Desde 28 sep · falta el día de pierna</div></div>
+                  <div class="row"><span class="chip wn">Borrador</span><button class="btn sm ghost">Seguir editando</button></div>
+                </div>
+                <div class="card between">
+                  <div><b>Fuerza — bloque 1</b><div class="muted" style="font-size:0.8rem">1 abr – 2 ago</div></div>
+                  <div class="row"><span class="chip line">Completada</span><button class="btn sm ghost">Ver</button></div>
+                </div>
+              </div>
+              <p class="note" style="margin-top:12px">El alumno no ve los borradores: solo aparecen cuando se publican.</p>
+            </div>
+
+            <div class="dpane" id="d-objetivos">
+              <div class="between" style="margin-bottom:12px"><b>Objetivos</b><button class="btn sm">Nuevo objetivo</button></div>
+              <div class="stack" style="gap:10px">
+                <div class="card">
+                  <div class="between"><b>Levantar 50 kg en press de banca a 5 repeticiones</b><span class="chip">Activo</span></div>
+                  <div class="row" style="margin-top:11px; gap:14px">
+                    <div class="stat"><b style="font-size:1.2rem">47,5</b><span>actual (kg)</span></div>
+                    <div class="stat"><b style="font-size:1.2rem">50</b><span>objetivo (kg)</span></div>
+                    <div class="stat"><b style="font-size:1.2rem">27 sep</b><span>fecha límite</span></div>
+                  </div>
+                  <div class="progress" style="margin-top:12px"><i style="width:95%"></i></div>
+                  <div class="row" style="margin-top:12px"><button class="btn sm ghost">Actualizar valor</button><button class="btn sm soft">Marcar conseguido</button></div>
+                </div>
+                <div class="card between">
+                  <div><b>Llegar a 70 kg en sentadilla trasera</b><div class="muted" style="font-size:0.8rem">Conseguido el 21 de agosto</div></div>
+                  <span class="chip ok">Conseguido ✓</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="dpane" id="d-notas">
+              <div class="between" style="margin-bottom:12px"><b>Notas</b><button class="btn sm">Nueva nota</button></div>
+              <div class="stack" style="gap:10px">
+                <div class="card" style="border-left:3px solid var(--dg)">
+                  <div class="between"><span class="chip dg">Privada — el alumno nunca la ve</span><span class="muted" style="font-size:0.76rem">17 sep</span></div>
+                  <p style="font-size:0.88rem; margin-top:9px">Tiende a infravalorar el RPE. Cuando dice 8 suele ser 9. Ajustar cargas al alza con cuidado.</p>
+                </div>
+                <div class="card" style="border-left:3px solid var(--ok)">
+                  <div class="between"><span class="chip ok">Compartida — visible para ella</span><span class="muted" style="font-size:0.76rem">17 sep</span></div>
+                  <p style="font-size:0.88rem; margin-top:9px">Buen bloque. Si el hombro aguanta, en el siguiente subimos el volumen de empuje vertical.</p>
+                </div>
+              </div>
+              <p class="note" style="margin-top:12px">Que una nota privada no se filtre no depende de la pantalla: lo impide la base de datos.</p>
+            </div>
+
+            <div class="dpane" id="d-medidas">
+              <div class="between" style="margin-bottom:12px"><b>Peso y medidas</b><button class="btn sm">Añadir medición</button></div>
+              <div class="tablewrap">
+                <table>
+                  <thead><tr><th>Fecha</th><th>Peso</th><th>Cintura</th><th>Cadera</th><th>Muslo</th><th></th></tr></thead>
+                  <tbody>
+                    <tr><td class="mono">17/09/2026</td><td class="mono">61,0 kg</td><td class="mono">69,6 cm</td><td class="mono">96 cm</td><td class="mono">55 cm</td><td><button class="btn sm ghost">Editar</button></td></tr>
+                    <tr><td class="mono">10/09/2026</td><td class="mono">61,4 kg</td><td class="mono">69,8 cm</td><td class="mono">96 cm</td><td class="mono">55 cm</td><td><button class="btn sm ghost">Editar</button></td></tr>
+                    <tr><td class="mono">03/09/2026</td><td class="mono">61,3 kg</td><td class="mono">70,0 cm</td><td class="mono">96 cm</td><td class="mono">55 cm</td><td><button class="btn sm ghost">Editar</button></td></tr>
+                    <tr><td class="mono">27/08/2026</td><td class="mono">61,5 kg</td><td class="mono">70,2 cm</td><td class="mono">96 cm</td><td class="mono">55 cm</td><td><button class="btn sm ghost">Editar</button></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="dpane" id="d-cuenta">
+              <div class="grid g2">
+                <div class="card">
+                  <b style="font-size:0.9rem">Estado de la cuenta</b>
+                  <div class="stack" style="gap:9px; margin-top:12px">
+                    <button class="btn ghost">Pausar cuenta</button>
+                    <button class="btn ghost">Restablecer contraseña</button>
+                    <button class="btn ghost">Exportar sus datos (JSON / PDF)</button>
+                  </div>
+                </div>
+                <div class="danger-box">
+                  <b style="font-size:0.9rem; color:var(--dg)">Dos borrados distintos</b>
+                  <div class="stack" style="gap:13px; margin-top:12px">
+                    <div>
+                      <b style="font-size:0.85rem">Baja operativa</b>
+                      <p class="muted" style="font-size:0.8rem">Reversible. Los datos se conservan y el histórico sigue intacto. La decides tú.</p>
+                      <button class="btn sm ghost" style="margin-top:7px">Dar de baja</button>
+                    </div>
+                    <hr>
+                    <div>
+                      <b style="font-size:0.85rem">Supresión RGPD</b>
+                      <p class="muted" style="font-size:0.8rem">Irreversible. Destruye nombre, email, teléfono y lesiones. El histórico queda sin identificar. Solo si lo pide ella.</p>
+                      <button class="btn sm danger" style="margin-top:7px">Anonimizar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ALTAS -->
+          <div class="pane" id="p-altas">
+            <div class="between" style="margin-bottom:16px"><h3>Altas e invitaciones</h3><button class="btn sm">Invitar por email</button></div>
+            <div class="tablewrap">
+              <table>
+                <thead><tr><th>Email</th><th>Estado</th><th>Enviada</th><th>Caduca</th><th></th></tr></thead>
+                <tbody>
+                  <tr><td class="mono">marcos@ejemplo.es</td><td><span class="chip ok">Aceptada</span></td><td class="mono">19/08/2026</td><td class="muted">—</td><td></td></tr>
+                  <tr><td class="mono">javier@ejemplo.es</td><td><span class="chip wn">Pendiente</span></td><td class="mono">26/09/2026</td><td class="mono">03/10/2026</td><td><div class="row"><button class="btn sm ghost">Reenviar</button><button class="btn sm ghost">Revocar</button></div></td></tr>
+                  <tr><td class="mono">ana@ejemplo.es</td><td><span class="chip dg">Caducada</span></td><td class="mono">02/09/2026</td><td class="mono">09/09/2026</td><td><button class="btn sm ghost">Reenviar</button></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="demo-flag" style="margin-top:16px">
+              No hay registro abierto en la web: la única puerta de entrada es una
+              invitación con enlace de un solo uso y caducidad.
+            </div>
+          </div>
+
+          <!-- CONSTRUCTOR -->
+          <div class="pane" id="p-builder">
+            <div class="between" style="margin-bottom:14px">
+              <div><h3>Fuerza — bloque 3</h3><span class="muted" style="font-size:0.8rem">Lucía Ramírez · borrador</span></div>
+              <div class="row"><button class="btn sm ghost">Duplicar de otro alumno</button><button class="btn sm">Publicar</button></div>
+            </div>
+            <div class="builder">
+              <div class="lib">
+                <b style="font-size:0.8rem; display:block; margin-bottom:9px">Biblioteca</b>
+                <input type="search" placeholder="Buscar…" style="width:100%; background:var(--bg); border:1px solid var(--ln); border-radius:8px; padding:7px 9px; margin-bottom:10px; font-size:0.8rem">
+                <div class="libitem" draggable="true">Press de banca con barra<small>Pecho · Tríceps</small></div>
+                <div class="libitem" draggable="true">Sentadilla trasera<small>Cuádriceps · Glúteo</small></div>
+                <div class="libitem" draggable="true">Remo con barra<small>Espalda · Bíceps</small></div>
+                <div class="libitem" draggable="true">Dominadas<small>Espalda · Bíceps</small></div>
+                <div class="libitem" draggable="true">Peso muerto rumano<small>Isquios · Glúteo</small></div>
+                <div class="libitem" draggable="true">Press militar de pie<small>Hombro · Tríceps</small></div>
+                <div class="libitem" draggable="true">Plancha frontal<small>Core</small></div>
+                <div class="libitem" draggable="true">Curl de bíceps<small>Bíceps</small></div>
+              </div>
+              <div>
+                <div class="day">
+                  <div class="day-h"><b>Día 1 — Empuje</b><div class="row"><button class="btn sm ghost">Renombrar</button><button class="btn sm ghost">Eliminar</button></div></div>
+                  <div class="day-b">
+                    <div class="slot">
+                      <div><b style="font-size:0.85rem">Press de banca con barra</b><div class="muted" style="font-size:0.74rem">Pecho · Tríceps · Hombro</div></div>
+                      <div class="presc">
+                        <input value="4" aria-label="Series"><input value="5" aria-label="Repeticiones"><input value="47,5" aria-label="Peso"><input value="180" aria-label="Descanso">
+                      </div>
+                    </div>
+                    <div class="slot">
+                      <div><b style="font-size:0.85rem">Press militar de pie</b><div class="muted" style="font-size:0.74rem">Hombro · Tríceps</div></div>
+                      <div class="presc">
+                        <input value="3" aria-label="Series"><input value="8-10" aria-label="Repeticiones"><input value="25" aria-label="Peso"><input value="120" aria-label="Descanso">
+                      </div>
+                    </div>
+                    <div class="drop">Arrastra aquí un ejercicio de la biblioteca</div>
+                  </div>
+                </div>
+                <div class="day">
+                  <div class="day-h"><b>Día 2 — Tirón</b><div class="row"><button class="btn sm ghost">Renombrar</button><button class="btn sm ghost">Eliminar</button></div></div>
+                  <div class="day-b">
+                    <div class="slot">
+                      <div><b style="font-size:0.85rem">Dominadas</b><div class="muted" style="font-size:0.74rem">Espalda · Bíceps</div></div>
+                      <div class="presc"><input value="4" aria-label="Series"><input value="al fallo" style="width:66px" aria-label="Repeticiones"><input value="—" aria-label="Peso"><input value="150" aria-label="Descanso"></div>
+                    </div>
+                    <div class="drop">Arrastra aquí un ejercicio de la biblioteca</div>
+                  </div>
+                </div>
+                <button class="btn ghost" style="width:100%">+ Añadir día</button>
+                <p class="note" style="margin-top:10px">Las repeticiones se escriben en texto libre: «8-10», «al fallo» o «30 s» son prescripciones reales.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- BIBLIOTECA -->
+          <div class="pane" id="p-ejercicios">
+            <div class="between" style="margin-bottom:14px"><h3>Biblioteca de ejercicios</h3><button class="btn sm">Nuevo ejercicio</button></div>
+            <div class="row" style="margin-bottom:14px">
+              <input type="search" placeholder="Buscar ejercicio…" style="flex:1; min-width:180px; background:var(--sf); border:1px solid var(--ln); border-radius:9px; padding:9px 12px; min-height:42px">
+              <select style="min-height:42px"><option>Todos los grupos</option><option>Pecho</option><option>Espalda</option><option>Pierna</option><option>Core</option></select>
+            </div>
+            <div class="grid g3">
+              <div class="card">
+                <div class="between"><b style="font-size:0.92rem">Press de banca</b><span class="chip ok">Vídeo ✓</span></div>
+                <p class="muted" style="font-size:0.8rem; margin-top:7px">Empuje horizontal para pectoral, deltoides anterior y tríceps.</p>
+                <div class="row" style="gap:5px; margin-top:10px"><span class="chip line" style="font-size:0.68rem">Pecho</span><span class="chip line" style="font-size:0.68rem">Tríceps</span></div>
+                <div class="row" style="margin-top:12px"><button class="btn sm ghost">Editar</button><button class="btn sm ghost">Ver vídeo</button></div>
+              </div>
+              <div class="card">
+                <div class="between"><b style="font-size:0.92rem">Sentadilla trasera</b><span class="chip ok">Vídeo ✓</span></div>
+                <p class="muted" style="font-size:0.8rem; margin-top:7px">Patrón de rodilla dominante para tren inferior completo.</p>
+                <div class="row" style="gap:5px; margin-top:10px"><span class="chip line" style="font-size:0.68rem">Cuádriceps</span><span class="chip line" style="font-size:0.68rem">Glúteo</span></div>
+                <div class="row" style="margin-top:12px"><button class="btn sm ghost">Editar</button><button class="btn sm ghost">Ver vídeo</button></div>
+              </div>
+              <div class="card">
+                <div class="between"><b style="font-size:0.92rem">Remo con barra</b><span class="chip wn">Procesando</span></div>
+                <p class="muted" style="font-size:0.8rem; margin-top:7px">Tracción horizontal para dorsal, romboides y trapecio medio.</p>
+                <div class="row" style="gap:5px; margin-top:10px"><span class="chip line" style="font-size:0.68rem">Espalda</span><span class="chip line" style="font-size:0.68rem">Bíceps</span></div>
+                <div class="row" style="margin-top:12px"><button class="btn sm ghost">Editar</button></div>
+              </div>
+              <div class="card">
+                <div class="between"><b style="font-size:0.92rem">Dominadas</b><span class="chip line">Sin vídeo</span></div>
+                <p class="muted" style="font-size:0.8rem; margin-top:7px">Tracción vertical con peso corporal.</p>
+                <div class="row" style="gap:5px; margin-top:10px"><span class="chip line" style="font-size:0.68rem">Espalda</span></div>
+                <div class="row" style="margin-top:12px"><button class="btn sm ghost">Editar</button><button class="btn sm soft">Subir vídeo</button></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- VÍDEOS -->
+          <div class="pane" id="p-videos">
+            <div class="between" style="margin-bottom:14px"><h3>Vídeos de demostración</h3><button class="btn sm">Subir vídeo</button></div>
+            <div class="card" style="margin-bottom:16px">
+              <div class="between"><b style="font-size:0.9rem">remo-barra.mp4</b><span class="chip wn">Procesando</span></div>
+              <div class="uploadbar" style="margin-top:11px"><i style="width:68%"></i></div>
+              <div class="between" style="margin-top:7px; font-size:0.78rem"><span class="muted mono">10,7 MB de 15,8 MB</span><span class="muted">68 %</span></div>
+            </div>
+            <div class="tablewrap">
+              <table>
+                <thead><tr><th>Fichero</th><th>Ejercicio</th><th>Duración</th><th>Tamaño</th><th>Estado</th><th></th></tr></thead>
+                <tbody>
+                  <tr><td class="mono">press-banca.mp4</td><td>Press de banca</td><td class="mono">0:42</td><td class="mono">18,4 MB</td><td><span class="chip ok">Listo</span></td><td><button class="btn sm ghost">Ver</button></td></tr>
+                  <tr><td class="mono">sentadilla.mp4</td><td>Sentadilla trasera</td><td class="mono">0:55</td><td class="mono">23,1 MB</td><td><span class="chip ok">Listo</span></td><td><button class="btn sm ghost">Ver</button></td></tr>
+                  <tr><td class="mono">remo-barra.mp4</td><td>Remo con barra</td><td class="mono">0:38</td><td class="mono">15,8 MB</td><td><span class="chip wn">Procesando</span></td><td></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="demo-flag" style="margin-top:16px">
+              Los vídeos se sirven con enlaces firmados que caducan. Nunca hay una
+              dirección pública permanente, y en las listas no se descarga ni un
+              byte hasta que alguien pulsa reproducir.
+            </div>
+          </div>
+
+          <!-- CONTENIDO WEB -->
+          <div class="pane" id="p-contenido">
+            <div class="between" style="margin-bottom:14px"><h3>Contenido de la web pública</h3><button class="btn sm">Guardar y publicar</button></div>
+            <div class="grid g2">
+              <div class="card">
+                <b style="font-size:0.9rem">Portada</b>
+                <div class="stack" style="gap:11px; margin-top:12px">
+                  <div class="inp"><label>Titular</label><input value="Tu entrenamiento no se parece al de nadie"></div>
+                  <div class="inp"><label>Texto de apoyo</label><textarea rows="3">Nada de rutinas genéricas descargadas de internet. Diseño tu plan mirando tu historial, tus lesiones y los días que puedes entrenar de verdad.</textarea></div>
+                  <div class="inp"><label>Texto del botón</label><input value="Solicitar una plaza"></div>
+                </div>
+              </div>
+              <div class="card">
+                <b style="font-size:0.9rem">Servicios y precios</b>
+                <div class="stack" style="gap:9px; margin-top:12px">
+                  <div class="between" style="padding:9px 0; border-bottom:1px solid var(--ln)"><span style="font-size:0.86rem">Online</span><div class="row"><span class="mono" style="font-size:0.84rem">60 €</span><button class="btn sm ghost">Editar</button></div></div>
+                  <div class="between" style="padding:9px 0; border-bottom:1px solid var(--ln)"><span style="font-size:0.86rem">Presencial</span><div class="row"><span class="mono" style="font-size:0.84rem">180 €</span><button class="btn sm ghost">Editar</button></div></div>
+                  <div class="between" style="padding:9px 0"><span style="font-size:0.86rem">Readaptación</span><div class="row"><span class="mono" style="font-size:0.84rem">A medida</span><button class="btn sm ghost">Editar</button></div></div>
+                </div>
+                <hr style="margin:14px 0">
+                <b style="font-size:0.9rem">Otras secciones</b>
+                <div class="row" style="gap:6px; margin-top:10px"><span class="chip line">Testimonios · 3</span><span class="chip line">Preguntas · 5</span><span class="chip line">Sobre mí</span></div>
+              </div>
+            </div>
+            <p class="note" style="margin-top:12px">Al guardar, la web pública se regenera sola. No hace falta tocar código ni desplegar nada.</p>
+          </div>
+
+          <!-- AUDITORÍA -->
+          <div class="pane" id="p-auditoria">
+            <div class="between" style="margin-bottom:14px"><h3>Registro de auditoría</h3><select style="min-height:38px"><option>Últimos 30 días</option><option>Últimos 7 días</option><option>Todo</option></select></div>
+            <div class="tablewrap">
+              <table>
+                <thead><tr><th>Cuándo</th><th>Quién</th><th>Qué</th><th>Sobre</th></tr></thead>
+                <tbody>
+                  <tr><td class="mono">28/09 09:14</td><td>Chucky</td><td>Creó rutina «Fuerza — bloque 3»</td><td>Lucía Ramírez</td></tr>
+                  <tr><td class="mono">21/08 20:15</td><td>Chucky</td><td>Marcó objetivo como conseguido</td><td>Lucía Ramírez</td></tr>
+                  <tr><td class="mono">19/08 11:05</td><td>Marcos Díaz</td><td>Aceptó la invitación y firmó el consentimiento</td><td>Marcos Díaz</td></tr>
+                  <tr><td class="mono">17/09 21:02</td><td>Chucky</td><td>Añadió nota privada</td><td>Lucía Ramírez</td></tr>
+                  <tr><td class="mono">17/09 08:00</td><td>Lucía Ramírez</td><td>Registró medición <span class="muted">(valores no registrados: dato de salud)</span></td><td>Lucía Ramírez</td></tr>
+                  <tr><td class="mono">02/07 17:00</td><td>Chucky</td><td>Pausó la cuenta</td><td>Nerea Beltrán</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="note" style="margin-top:12px">El registro no se puede editar ni borrar, ni siquiera desde esta cuenta. Y nunca guarda valores de salud en claro.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-flag" style="margin-top:22px">
+      <b>Esto es un prototipo visual.</b> Las pantallas están completas pero los
+      datos son de ejemplo y no hay base de datos detrás. Sirve para decidir
+      cómo se ve y cómo se organiza todo antes de construirlo de verdad.
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script>
+(function () {
+  var root = document.documentElement;
+
+  /* --- tema: respeta lo que ponga el anfitrión, si no el sistema --- */
+  if (!root.getAttribute("data-theme")) {
+    root.setAttribute("data-theme",
+      window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  }
+  document.getElementById("mode").addEventListener("click", function () {
+    root.setAttribute("data-theme",
+      root.getAttribute("data-theme") === "dark" ? "light" : "dark");
+  });
+
+  /* --- paleta y titular --- */
+  document.getElementById("pal").addEventListener("change", function (e) {
+    root.setAttribute("data-palette", e.target.value);
+  });
+  document.getElementById("typ").addEventListener("change", function (e) {
+    root.setAttribute("data-type", e.target.value);
+  });
+  root.setAttribute("data-palette", "clinica");
+  root.setAttribute("data-type", "geometrica");
+
+  /* --- vistas --- */
+  var tabs = document.querySelectorAll(".viewtab");
+  tabs.forEach(function (t) {
+    t.addEventListener("click", function () {
+      tabs.forEach(function (x) { x.setAttribute("aria-selected", "false"); });
+      t.setAttribute("aria-selected", "true");
+      document.querySelectorAll(".view").forEach(function (v) { v.classList.remove("on"); });
+      document.getElementById("v-" + t.dataset.view).classList.add("on");
+      window.scrollTo({ top: 0, behavior: "instant" });
+    });
+  });
+
+  /* --- pantallas del móvil --- */
+  function showScreen(id) {
+    document.querySelectorAll(".screen").forEach(function (s) { s.classList.remove("on"); });
+    var el = document.getElementById("s-" + id);
+    if (el) el.classList.add("on");
+    document.querySelectorAll(".pick").forEach(function (p) {
+      p.setAttribute("aria-pressed", String(p.dataset.scr === id));
+    });
+  }
+  document.querySelectorAll(".pick").forEach(function (p) {
+    p.addEventListener("click", function () { showScreen(p.dataset.scr); });
+  });
+  document.querySelectorAll("[data-go]").forEach(function (b) {
+    b.addEventListener("click", function () { showScreen(b.dataset.go); });
+  });
+
+  /* --- series del modo entrenamiento --- */
+  var sync = document.getElementById("syncchip");
+  var syncTimer;
+  document.querySelectorAll(".tick").forEach(function (t) {
+    t.addEventListener("click", function () {
+      var on = t.getAttribute("aria-pressed") === "true";
+      t.setAttribute("aria-pressed", String(!on));
+      t.closest(".setrow").classList.toggle("done", !on);
+
+      /* Enseña el ciclo real: guardando -> guardado */
+      sync.className = "chip line";
+      sync.textContent = "Guardando…";
+      clearTimeout(syncTimer);
+      syncTimer = setTimeout(function () {
+        sync.className = "chip ok";
+        sync.textContent = "✓ Guardado";
+      }, 900);
+    });
+  });
+
+  /* --- temporizador de descanso --- */
+  var left = 180, running = false, tick;
+  var clock = document.getElementById("clock");
+  var startBtn = document.getElementById("tstart");
+  function paint() {
+    var m = Math.floor(left / 60), s = left % 60;
+    clock.textContent = m + ":" + (s < 10 ? "0" : "") + s;
+  }
+  startBtn.addEventListener("click", function () {
+    if (running) {
+      clearInterval(tick); running = false; startBtn.textContent = "Reanudar";
+      return;
+    }
+    running = true; startBtn.textContent = "Pausar";
+    tick = setInterval(function () {
+      if (left > 0) { left--; paint(); }
+      else { clearInterval(tick); running = false; startBtn.textContent = "Iniciar"; clock.textContent = "¡Vamos!"; }
+    }, 1000);
+  });
+  document.getElementById("treset").addEventListener("click", function () {
+    clearInterval(tick); running = false; left = 180; paint(); startBtn.textContent = "Iniciar";
+  });
+
+  /* --- panel: secciones --- */
+  var sideBtns = document.querySelectorAll(".side button, [data-pane]");
+  sideBtns.forEach(function (b) {
+    b.addEventListener("click", function () {
+      var id = b.dataset.pane;
+      if (!id) return;
+      document.querySelectorAll(".side button").forEach(function (x) {
+        x.setAttribute("aria-pressed", String(x.dataset.pane === id));
+      });
+      document.querySelectorAll(".pane").forEach(function (p) { p.classList.remove("on"); });
+      var el = document.getElementById("p-" + id);
+      if (el) el.classList.add("on");
+    });
+  });
+
+  /* --- panel: pestañas de la ficha --- */
+  var dtabs = document.querySelectorAll(".dtab");
+  dtabs.forEach(function (t) {
+    t.addEventListener("click", function () {
+      dtabs.forEach(function (x) { x.setAttribute("aria-selected", "false"); });
+      t.setAttribute("aria-selected", "true");
+      document.querySelectorAll(".dpane").forEach(function (p) { p.classList.remove("on"); });
+      document.getElementById("d-" + t.dataset.dt).classList.add("on");
+    });
+  });
+})();
+</script>
+</body>
+</html>
