@@ -10,7 +10,7 @@
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dela+Gothic+One&family=Shippori+Mincho:wght@700;800&family=Yuji+Syuku&family=Kaushan+Script&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Dela+Gothic+One&family=Shippori+Mincho:wght@700;800&family=Yuji+Syuku&family=Kaushan+Script&family=Playfair+Display:wght@700;900&display=swap">
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/publica.css">
@@ -520,7 +520,7 @@
         </div>
         <div class="demo-flag" style="margin-top:24px">
           Los guiños a series de anime (esferas, nivel de poder, bandana,
-          cartel de «Se busca», formas de respiración, destello negro…) son
+          cartel de WANTED, formas de respiración, destello negro…) son
           solo para este prototipo. Antes de la web real se revisan uno a uno.
         </div>
         <div class="demo-flag" style="margin-top:10px">
@@ -907,15 +907,19 @@
         <div class="screen" id="s-perfil">
           <div class="appbar"><h3>Tu perfil</h3></div>
           <div class="appbody">
-            <div class="wanted" role="group" aria-label="Cartel de se busca: Lucía la Imparable Ramírez, recompensa 12.450.000">
-              <div class="w-title">SE BUSCA</div>
+            <div class="wanted" role="group" aria-label="Cartel de WANTED, dead or alive: Lucía D. Ramírez, recompensa 12.450.000">
+              <div class="w-title">WANTED</div>
               <div class="w-photo" aria-hidden="true"><svg viewBox="0 0 240 320"><use href="#athlete"/></svg></div>
-              <div class="w-sub">VIVA O ENTRENANDO</div>
-              <div class="w-name">Lucía «la Imparable» Ramírez</div>
-              <div class="w-bounty">฿ 12.450.000</div>
-              <div class="w-stats">
-                <span><b>12</b>nivel</span><span><b>48</b>sesiones</span><span><b>4</b>técnicas</span><span><b>弟子</b>rango</span>
+              <div class="w-sub"><span class="orn" aria-hidden="true">{</span>DEAD OR ALIVE<span class="orn r" aria-hidden="true">}</span></div>
+              <div class="w-name">LUCÍA·D·RAMÍREZ</div>
+              <div class="w-bounty"><span class="berry" aria-hidden="true">฿</span>12.450.000-</div>
+              <div class="w-foot">
+                <p>Discípula del dojo, vista por última vez levantando más que la semana pasada. Peligrosa para sus propias marcas. Se ruega no interrumpir sus series.</p>
+                <span class="w-org">DOJO</span>
               </div>
+            </div>
+            <div class="w-stats">
+              <span><b>12</b>nivel</span><span><b>48</b>sesiones</span><span><b>4</b>técnicas</span><span><b class="jp">弟子</b>rango</span>
             </div>
             <div class="minicard stack" style="gap:0">
               <div class="exrow link"><div style="flex:1"><b class="small-b">Datos personales</b></div><span class="muted">›</span></div>

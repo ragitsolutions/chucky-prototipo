@@ -51,7 +51,7 @@ vea el cliente aquí es lo que esperará después, y la web real será comercial
 | Logro «Gravedad ×10» y pregunta de las cien gravedades       | Progreso · Preguntas          | Dragon Ball      |
 | Bandana con placa de metal grabada como insignia de rango    | Alumno · Hoy, ficha del panel | Naruto           |
 | Logro «Clones de sombra» (分身) y «No me rindo: ese es mi camino» | Progreso · Sin rutina      | Naruto           |
-| Cartel de «SE BUSCA» con recompensa en ฿                     | Alumno · Perfil               | One Piece        |
+| Cartel WANTED / DEAD OR ALIVE, «LUCÍA·D·RAMÍREZ», ฿ y «DOJO» | Alumno · Perfil               | One Piece        |
 | Formas 壱ノ型/弐ノ型/参ノ型 y «Respiración del hierro»          | Rutina · Entrenamiento        | Kimetsu no Yaiba |
 | Franja de cuadros rojos y negros; rango máximo «Pilar» (柱)   | Web pública · Progreso        | Kimetsu no Yaiba |
 | «黒閃! Destello negro» al completar todas las series          | Modo entrenamiento            | Jujutsu Kaisen   |
