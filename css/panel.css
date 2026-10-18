@@ -1,0 +1,101 @@
+/* ===========================================================================
+   PANEL DEL ENTRENADOR
+   Mismo estilo que el resto, pero las tablas mandan: aquí se trabaja.
+   =========================================================================== */
+.desk { border: 2px solid var(--fg); border-radius: 12px; overflow: hidden; background: var(--sf); box-shadow: 6px 6px 0 var(--pr); }
+.desk-top {
+  display: flex; align-items: center; gap: 10px; padding: 10px 16px; flex-wrap: wrap;
+  background: var(--fg); color: var(--bg);
+}
+.desk-top svg { width: 30px; height: 26px; color: var(--pr); }
+.desk-top .jp { font-size: 1.05rem; }
+.desk-top span { font-size: 0.8rem; opacity: .85; }
+.desk-top .url { margin-left: auto; font-size: 0.74rem; opacity: .7; }
+
+.desk-body { display: grid; grid-template-columns: 214px 1fr; min-height: 600px; }
+.side {
+  border-right: 1px solid var(--ln); padding: 12px 10px; display: flex; flex-direction: column; gap: 2px;
+  background: var(--sf2);
+  background-image: var(--grain);
+}
+.side button {
+  background: none; border: 0; text-align: left; padding: 10px 12px; border-radius: 6px; cursor: pointer;
+  font-size: 0.86rem; color: var(--fg); min-height: 44px; font-weight: 600;
+}
+.side button:hover { background: color-mix(in oklab, var(--pr) 10%, transparent); }
+.side button[aria-pressed="true"] { background: var(--pr); color: var(--op); font-weight: 800; }
+.side .lbl {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--mu);
+  padding: 16px 12px 6px; font-weight: 800;
+}
+.side .lbl .jp { font-size: 0.9rem; color: var(--pr); letter-spacing: 0.04em; text-transform: none; }
+.deskmain { padding: 22px; background: var(--bg); overflow-x: auto; min-width: 0; }
+.pane { display: none; }
+.pane.on { display: block; }
+.pane h3 { font-size: 1.35rem; }
+
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 24px; }
+.kpi { display: flex; align-items: center; gap: 14px; background: var(--sf); border: 1px solid var(--ln); border-radius: 10px; padding: 14px; }
+.kpi .hanko { width: 50px; height: 50px; font-size: 0.95rem; }
+.kpi b { display: block; font-family: var(--display); font-weight: var(--dw); font-size: 1.8rem; line-height: 1; }
+.kpi span:not(.hanko) { font-size: 0.78rem; color: var(--mu); }
+
+.search { flex: 1; min-width: 180px; background: var(--sf); border: 1px solid var(--ln); border-radius: 6px; padding: 9px 12px; min-height: 44px; }
+.search.sm { width: 100%; min-height: 38px; font-size: 0.8rem; margin-bottom: 10px; background: var(--bg); }
+
+table { width: 100%; border-collapse: collapse; font-size: 0.87rem; }
+th, td { text-align: left; padding: 11px 12px 11px 0; border-bottom: 1px solid var(--ln); vertical-align: middle; }
+th { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--mu); font-weight: 800; border-bottom: 2px solid var(--fg); }
+tbody tr:hover { background: color-mix(in oklab, var(--pr) 5%, transparent); }
+.tablewrap { overflow-x: auto; }
+
+.dtabs { display: flex; gap: 3px; border-bottom: 2px solid var(--ln); margin-bottom: 18px; overflow-x: auto; }
+.dtab {
+  background: none; border: 0; border-bottom: 3px solid transparent; margin-bottom: -2px;
+  padding: 10px 13px; cursor: pointer; color: var(--mu); font-size: 0.87rem; white-space: nowrap; min-height: 44px; font-weight: 600;
+}
+.dtab[aria-selected="true"] { color: var(--fg); border-bottom-color: var(--pr); font-weight: 800; }
+.dpane { display: none; }
+.dpane.on { display: block; }
+.grid.two { grid-template-columns: 1fr 1fr; gap: 11px; margin-top: 12px; }
+.line-row { padding: 9px 0; border-bottom: 1px solid var(--ln); }
+
+.danger-box { border: 2px solid var(--dg); border-radius: 10px; padding: 15px; background: color-mix(in oklab, var(--dg) 7%, transparent); }
+
+.builder { display: grid; grid-template-columns: 220px 1fr; gap: 18px; }
+.lib { border: 1px solid var(--ln); border-radius: 10px; padding: 12px; background: var(--sf); max-height: 460px; overflow-y: auto; }
+.libitem {
+  border: 1px solid var(--ln); border-left: 4px solid var(--a2); border-radius: 4px;
+  padding: 9px 10px; margin-bottom: 7px; font-size: 0.82rem; cursor: grab; background: var(--bg); font-weight: 600;
+}
+.libitem:hover { border-color: var(--pr); border-left-color: var(--pr); }
+.libitem small { display: block; color: var(--mu); font-size: 0.7rem; font-weight: 400; }
+.day { border: 1px solid var(--ln); border-top: 4px solid var(--pr); border-radius: 6px; margin-bottom: 14px; background: var(--sf); }
+.day-h { padding: 11px 14px; border-bottom: 1px solid var(--ln); display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.day-h .jp { color: var(--pr); }
+.day-b { padding: 6px 14px 12px; }
+.slot { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--ln); }
+.slot:last-of-type { border-bottom: 0; }
+.slot .presc { display: flex; gap: 5px; flex-wrap: wrap; }
+.presc input { width: 54px; background: var(--bg); border: 1px solid var(--ln); border-radius: 5px; padding: 6px; font-size: 0.78rem; text-align: center; min-height: 36px; }
+.drop { border: 2px dashed var(--ln); border-radius: 8px; padding: 13px; text-align: center; color: var(--mu); font-size: 0.8rem; margin-top: 8px; }
+
+.exercise { display: flex; flex-direction: column; }
+.ex-art {
+  height: 84px; margin: -18px -18px 14px; border-radius: 10px 10px 0 0; display: grid; place-items: center;
+  color: var(--fg);
+  background: radial-gradient(circle at 78% 34%, var(--sun) 0 18px, transparent 19px), linear-gradient(var(--sky1), var(--sky2));
+}
+.ex-art svg { width: 110px; height: 44px; }
+.exercise .chip.line { font-size: 0.68rem; }
+
+@media (max-width: 860px) {
+  .desk-body { grid-template-columns: 1fr; }
+  .side { flex-direction: row; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--ln); }
+  .side .lbl { display: none; }
+  .side button { white-space: nowrap; }
+  .builder { grid-template-columns: 1fr; }
+  .desk-top .url { margin-left: 0; width: 100%; }
+  .grid.two { grid-template-columns: 1fr; }
+}

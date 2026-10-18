@@ -1,0 +1,275 @@
+/* ===========================================================================
+   BASE, CROMADO DEL PROTOTIPO Y PIEZAS COMUNES
+   =========================================================================== */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--display); font-weight: var(--dw);
+  margin: 0; text-wrap: balance; letter-spacing: -0.01em; line-height: 1.15;
+}
+p { margin: 0; }
+a { color: inherit; }
+button, select, input, textarea { font: inherit; color: inherit; }
+svg { display: block; }
+
+:focus-visible { outline: 3px solid var(--pr); outline-offset: 2px; border-radius: 4px; }
+
+.mono { font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; font-variant-numeric: tabular-nums; }
+.muted { color: var(--mu); }
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
+.jp { font-family: var(--display); font-weight: var(--dw); letter-spacing: 0.04em; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 4px 10px; flex-wrap: wrap;
+  font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--pr); font-weight: 700;
+}
+.eyebrow .jp { white-space: nowrap; font-size: 1.05rem; letter-spacing: 0.1em; text-transform: none; color: var(--fg); }
+.eyebrow::before { content: ""; width: 26px; height: 3px; background: var(--pr); border-radius: 2px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Papel: textura de grano sobre cualquier superficie --------------------- */
+.washi { position: relative; isolation: isolate; }
+.washi::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background-image: var(--grain); border-radius: inherit;
+}
+
+/* ===========================================================================
+   BARRA DE CONTROL Y CONMUTADOR DE VISTAS
+   =========================================================================== */
+.studio {
+  position: sticky; top: 0; z-index: 60;
+  background: color-mix(in oklab, var(--sf) 90%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--ln);
+}
+.studio-in { max-width: 1160px; margin: 0 auto; padding: 10px 20px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 10px; margin-right: auto; text-decoration: none; }
+.brand svg { width: 34px; height: 28px; color: var(--pr); flex: 0 0 auto; }
+.brand b { font-family: var(--display); font-weight: var(--dw); font-size: 1.08rem; line-height: 1.1; display: block; }
+.brand small { display: block; font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mu); }
+.field { display: flex; align-items: center; gap: 7px; }
+.field label { font-size: 0.7rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--mu); font-weight: 700; }
+select {
+  background: var(--sf); border: 1px solid var(--ln); color: var(--fg);
+  border-radius: 8px; padding: 8px 10px; font-size: 0.85rem; min-height: 44px; cursor: pointer;
+}
+.iconbtn {
+  background: var(--sf); border: 1px solid var(--ln); border-radius: 8px; color: var(--fg);
+  width: 44px; height: 44px; display: grid; place-items: center; cursor: pointer;
+}
+.iconbtn svg { width: 20px; height: 20px; }
+
+.views { border-bottom: 1px solid var(--ln); background: var(--sf); position: sticky; top: 65px; z-index: 50; }
+.views-in { max-width: 1160px; margin: 0 auto; padding: 0 20px; display: flex; gap: 4px; overflow-x: auto; }
+.viewtab {
+  background: none; border: 0; border-bottom: 3px solid transparent;
+  padding: 12px 14px; cursor: pointer; white-space: nowrap;
+  font-size: 0.9rem; font-weight: 600; color: var(--mu); min-height: 48px;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.viewtab .jp { font-size: 0.95rem; }
+.viewtab[aria-selected="true"] { color: var(--fg); border-bottom-color: var(--pr); }
+.viewtab[aria-selected="true"] .jp { color: var(--pr); }
+
+.view { display: none; }
+.view.on { display: block; }
+
+/* ===========================================================================
+   PIEZAS COMUNES
+   =========================================================================== */
+.btn {
+  position: relative;
+  background: var(--pr); color: var(--op); border: 0; border-radius: 6px;
+  padding: 12px 20px; font-weight: 700; font-size: 0.94rem; cursor: pointer; letter-spacing: 0.01em;
+  min-height: 46px; display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+  box-shadow: 0 4px 0 color-mix(in oklab, var(--pr) 55%, black);
+  transition: transform .12s;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(3px); box-shadow: 0 1px 0 color-mix(in oklab, var(--pr) 55%, black); }
+.btn.ghost { background: transparent; color: var(--fg); border: 2px solid var(--fg); box-shadow: none; }
+.btn.soft { background: var(--ac); color: var(--oa); box-shadow: none; }
+.btn.danger { background: var(--dg); color: var(--op); box-shadow: 0 4px 0 color-mix(in oklab, var(--dg) 55%, black); }
+.btn.sm { padding: 7px 13px; font-size: 0.82rem; min-height: 40px; box-shadow: none; }
+.btn.sm.ghost { border-width: 1px; border-color: var(--ln); }
+.btn .k { font-family: var(--display); font-weight: var(--dw); }
+
+.card { background: var(--sf); border: 1px solid var(--ln); border-radius: 10px; padding: 18px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; background: var(--ac); color: var(--oa); border-radius: 999px; padding: 5px 11px; font-size: 0.76rem; font-weight: 700; }
+.chip.line { background: transparent; border: 1px solid var(--ln); color: var(--mu); }
+.chip.ok { background: transparent; border: 1px solid var(--ok); color: var(--ok); }
+.chip.wn { background: transparent; border: 1px solid var(--wn); color: var(--wn); }
+.chip.dg { background: transparent; border: 1px solid var(--dg); color: var(--dg); }
+
+.grid { display: grid; gap: 18px; }
+.g2 { grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); }
+.g3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.between { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.stack { display: flex; flex-direction: column; }
+hr { border: 0; border-top: 1px solid var(--ln); margin: 0; }
+.note { font-size: 0.78rem; color: var(--mu); font-style: italic; }
+
+.demo-flag {
+  background: color-mix(in oklab, var(--wn) 12%, transparent);
+  border: 1px dashed var(--wn); color: var(--fg);
+  border-radius: 8px; padding: 11px 14px; font-size: 0.82rem;
+}
+
+.inp { display: flex; flex-direction: column; gap: 6px; }
+.inp label { font-size: 0.82rem; font-weight: 700; }
+.inp input, .inp textarea, .inp select {
+  background: var(--bg); border: 1px solid var(--ln); border-radius: 6px;
+  padding: 11px 12px; min-height: 46px; width: 100%;
+}
+.inp input:focus, .inp textarea:focus { border-color: var(--pr); }
+
+/* ===========================================================================
+   MOTIVOS JAPONESES
+   =========================================================================== */
+
+/* Sello hanko: kanji en rojo, ligeramente torcido, como estampado a mano */
+.hanko {
+  --hk: var(--pr);
+  display: inline-grid; place-items: center; flex: 0 0 auto;
+  width: 46px; height: 46px; border-radius: 6px;
+  border: 2.5px solid var(--hk); color: var(--hk);
+  font-family: var(--display); font-weight: var(--dw); font-size: 1.15rem; line-height: 1;
+  transform: rotate(-6deg);
+  background: color-mix(in oklab, var(--hk) 8%, transparent);
+}
+.hanko.round { border-radius: 50%; }
+.hanko.solid { background: var(--hk); color: var(--op); }
+.hanko.v { writing-mode: vertical-rl; letter-spacing: 0.05em; font-size: 0.95rem; }
+.hanko.sm { width: 34px; height: 34px; font-size: 0.85rem; border-width: 2px; }
+.hanko.lg { width: 64px; height: 64px; font-size: 1.5rem; border-width: 3px; }
+.hanko.off { --hk: var(--ln); color: var(--mu); background: transparent; border-style: dashed; transform: none; }
+
+/* Avatar con iniciales en forma de sello */
+.avatar {
+  width: 38px; height: 38px; border-radius: 50%; flex: 0 0 auto;
+  display: grid; place-items: center; font-weight: 800; font-size: 0.8rem;
+  border: 2px solid var(--pr); color: var(--pr); background: var(--sf);
+}
+
+/* Kanji vertical grande */
+.tate { writing-mode: vertical-rl; font-family: var(--display); font-weight: var(--dw); letter-spacing: 0.12em; line-height: 1; }
+
+/* Separador de ondas seigaiha (el patrón vive en el sprite del HTML) */
+.wave { height: 44px; width: 100%; color: var(--ln); }
+.wave rect { fill: url(#seigaiha); }
+.sg-back { fill: var(--wave-bg, var(--sf2)); }
+.sg-line { fill: none; stroke: var(--wave-ln, color-mix(in oklab, var(--pr) 45%, var(--ln))); stroke-width: 1.3; }
+
+/* Pergamino: tarjeta con varillas arriba y abajo */
+.scroll {
+  position: relative; background: var(--sf); border: 1px solid var(--ln);
+  border-radius: 4px; padding: 26px 20px 24px; margin: 10px 6px;
+}
+.scroll::before, .scroll::after {
+  content: ""; position: absolute; left: -8px; right: -8px; height: 12px; border-radius: 6px;
+  background: linear-gradient(var(--a2), color-mix(in oklab, var(--a2) 60%, black));
+}
+.scroll::before { top: -7px; }
+.scroll::after { bottom: -7px; }
+
+/* Líneas de velocidad de manga, radiales desde el centro */
+.speed { position: relative; overflow: hidden; isolation: isolate; }
+.speed::before {
+  content: ""; position: absolute; inset: -40%; z-index: -1; pointer-events: none;
+  background: repeating-conic-gradient(from 0deg at 50% 50%,
+    color-mix(in oklab, var(--fg) 13%, transparent) 0deg 1.4deg, transparent 1.4deg 7deg);
+  -webkit-mask: radial-gradient(circle at center, transparent 22%, black 62%);
+          mask: radial-gradient(circle at center, transparent 22%, black 62%);
+}
+.speed.hot::before {
+  background: repeating-conic-gradient(from 0deg at 50% 50%,
+    color-mix(in oklab, var(--pr) 30%, transparent) 0deg 1.4deg, transparent 1.4deg 7deg);
+}
+
+/* Bocadillo de cómic */
+.bubble-manga {
+  position: relative; background: var(--sf); color: var(--fg);
+  border: 2.5px solid var(--fg); border-radius: 26px; padding: 20px 22px;
+}
+.bubble-manga::after {
+  content: ""; position: absolute; left: 34px; bottom: -19px; width: 26px; height: 20px;
+  background: var(--sf); border-left: 2.5px solid var(--fg); border-bottom: 2.5px solid var(--fg);
+  transform: skewX(-38deg); border-bottom-left-radius: 4px;
+}
+.bubble-manga.think::after {
+  width: 16px; height: 16px; border: 2.5px solid var(--fg); border-radius: 50%;
+  transform: none; bottom: -26px; left: 30px;
+}
+.bubble-manga.shout { border-radius: 8px; border-width: 3px; box-shadow: 5px 5px 0 var(--pr); }
+
+/* Onomatopeya de manga */
+.sfx {
+  font-family: var(--display); font-weight: var(--dw); color: var(--pr);
+  -webkit-text-stroke: 1.5px var(--fg); paint-order: stroke fill;
+  letter-spacing: 0.02em; line-height: 1; transform: rotate(-8deg); display: inline-block;
+}
+
+/* Estallido «¡ドン!» al completar una serie */
+.burst {
+  position: absolute; pointer-events: none; z-index: 5;
+  width: 130px; height: 130px; display: grid; place-items: center;
+  animation: burst .9s cubic-bezier(.2, 1.4, .4, 1) forwards;
+}
+.burst svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.burst polygon { fill: var(--a2); stroke: #140c0a; stroke-width: 3; stroke-linejoin: round; }
+/* Tinta negra fija: el estallido es dorado en todas las paletas y modos */
+.burst b { position: relative; font-family: var(--display); font-weight: var(--dw); font-size: 1.6rem; color: #140c0a; transform: rotate(-10deg); }
+@keyframes burst {
+  0% { transform: scale(.2) rotate(-20deg); opacity: 0; }
+  35% { transform: scale(1.08) rotate(4deg); opacity: 1; }
+  75% { transform: scale(1) rotate(0); opacity: 1; }
+  100% { transform: scale(1.15) rotate(0); opacity: 0; }
+}
+
+/* Pétalos de sakura cayendo (los crea js/sakura.js) */
+.petals { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 2; }
+.petal {
+  position: absolute; top: -30px; left: var(--x); width: var(--s); height: var(--s);
+  color: var(--petal); opacity: 0;
+  animation: fall var(--t) linear var(--d) infinite;
+}
+.petal svg { width: 100%; height: 100%; animation: sway calc(var(--t) / 3) ease-in-out var(--d) infinite alternate; }
+@keyframes fall {
+  0% { transform: translate3d(0, 0, 0) rotate(0); opacity: 0; }
+  8% { opacity: .95; }
+  90% { opacity: .9; }
+  100% { transform: translate3d(-140px, 720px, 0) rotate(540deg); opacity: 0; }
+}
+@keyframes sway { from { transform: translateX(-14px) rotate(-20deg); } to { transform: translateX(14px) rotate(25deg); } }
+
+/* Aparición suave de las secciones */
+.rise { animation: rise .7s ease-out both; }
+@keyframes rise { from { transform: translateY(16px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+@media (max-width: 860px) {
+  .views { top: 0; position: static; }
+  .studio { position: static; }
+}
+@media (max-width: 520px) {
+  .studio-in { gap: 8px; }
+  .brand { width: 100%; }
+  .field label { display: none; }
+  .field { flex: 1; }
+  .field select { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .petals { display: none; }
+}

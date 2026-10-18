@@ -1,8 +1,9 @@
 # chuckyfitness — prototipo visual
 
 Prototipo navegable de la plataforma para enseñar al cliente: web pública, área
-del alumno y panel del entrenador, con un selector de paleta, de tipografía y de
-tema claro/oscuro que repinta la web entera al momento.
+del alumno y panel del entrenador, con estética de **dojo de templo japonés** y
+guiños de manga. Un selector de paleta, de tipografía y de tema claro/oscuro
+repinta la web entera al momento, ilustraciones incluidas.
 
 **Es solo visual.** No hay base de datos ni formularios que envíen nada. Los
 precios, los datos del entrenador y los testimonios son de ejemplo.
@@ -13,17 +14,41 @@ para poder publicarse tal cual en un hosting estático.
 
 ## Contenido
 
-| Fichero       | Para qué                                                       |
-| ------------- | -------------------------------------------------------------- |
-| `index.html`  | El prototipo entero. Un único fichero, sin dependencias.       |
-| `.htaccess`   | Fuerza UTF-8 y pide a los buscadores que no lo indexen.        |
-| `robots.txt`  | Lo mismo, para los buscadores que no leen cabeceras.           |
+| Fichero               | Para qué                                                          |
+| --------------------- | ----------------------------------------------------------------- |
+| `index.html`          | Las tres vistas y el sprite con todas las ilustraciones.          |
+| `css/tokens.css`      | Las cuatro paletas (claro y oscuro) y las tres tipografías.       |
+| `css/base.css`        | Piezas comunes: botones, sellos hanko, ondas, bocadillos…         |
+| `css/publica.css`     | Web pública.                                                      |
+| `css/alumno.css`      | Área del alumno.                                                  |
+| `css/panel.css`       | Panel del entrenador.                                             |
+| `js/app.js`           | Navegación, series, «¡ドン!», temporizador y selectores.           |
+| `js/sakura.js`        | Pétalos de sakura cayendo.                                        |
+| `tools/contraste.mjs` | Mide el contraste WCAG de las paletas: `node tools/contraste.mjs` |
+| `.htaccess`           | Fuerza UTF-8 y pide a los buscadores que no lo indexen.           |
+| `robots.txt`          | Lo mismo, para los buscadores que no leen cabeceras.              |
 
-Lo único externo son las tipografías, que se cargan de Google Fonts.
+Lo único externo son las tipografías, que se cargan de Google Fonts. Las
+ilustraciones van dentro de `index.html` como gráficos vectoriales: no hay
+imágenes que descargar.
+
+Todas las animaciones se apagan si el dispositivo tiene activado «reducir
+movimiento».
 
 ## Verlo en local
 
 Abre `index.html` con doble clic. No necesita servidor.
+
+## La versión anterior
+
+La primera versión, de estética «clara tipo clínica», está guardada con la
+etiqueta `v1-clinica`:
+
+```bash
+git checkout v1-clinica
+```
+
+Para volver a la actual: `git checkout main`.
 
 ## Publicarlo en Hostinger desde GitHub
 

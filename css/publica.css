@@ -1,0 +1,166 @@
+/* ===========================================================================
+   WEB PÚBLICA
+   =========================================================================== */
+
+/* Portada -------------------------------------------------------------- */
+.hero { position: relative; min-height: 640px; display: flex; align-items: center; overflow: hidden; }
+.hero-scene { position: absolute; inset: 0; }
+.hero-scene > svg { width: 100%; height: 100%; }
+.hero-scrim {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(90deg, var(--bg) 0%, color-mix(in oklab, var(--bg) 85%, transparent) 26%, transparent 50%);
+}
+.hero-in { position: relative; z-index: 3; width: 100%; padding-top: 60px; padding-bottom: 60px; }
+.hero-in > * { max-width: 560px; }
+.hero h1 { font-size: clamp(2.4rem, 6.4vw, 4.4rem); margin-top: 16px; }
+.hero .lede { font-size: 1.1rem; color: var(--mu); max-width: 46ch; margin-top: 18px; }
+.hero .cta { margin-top: 30px; }
+.hero .rise:nth-child(2) { animation-delay: .08s; }
+.hero .rise:nth-child(3) { animation-delay: .16s; }
+.hero .rise:nth-child(4) { animation-delay: .24s; }
+.hero .rise:nth-child(5) { animation-delay: .32s; }
+
+.stats { display: flex; gap: 26px; flex-wrap: wrap; margin-top: 36px; }
+.stat { display: flex; align-items: center; gap: 10px; }
+.stat > div { display: flex; flex-direction: column; }
+.stat b { font-family: var(--display); font-weight: var(--dw); font-size: 1.9rem; line-height: 1; }
+.stat span { font-size: 0.78rem; color: var(--mu); }
+.stat .hanko span, .stat .hanko { color: var(--pr); }
+
+/* Estandarte vertical (nobori) con 心技体 */
+.nobori {
+  position: absolute; z-index: 3; right: clamp(16px, 6vw, 90px); top: 0;
+  background: var(--pr); color: var(--op);
+  padding: 26px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 12px;
+  box-shadow: 0 10px 30px -10px color-mix(in oklab, var(--pr) 60%, black);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 14px), 0 100%);
+}
+.nobori .tate { font-size: 2.6rem; }
+.nobori small { writing-mode: vertical-rl; font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: .9; padding-bottom: 14px; }
+
+/* Bandas --------------------------------------------------------------- */
+.band { padding: 72px 0; position: relative; }
+.band-alt { background: var(--sf2); }
+.band h2 { font-size: clamp(1.8rem, 4.4vw, 2.7rem); margin-top: 12px; }
+.sec-head { margin-bottom: 34px; }
+.sec-head .lede, .band .lede { color: var(--mu); max-width: 58ch; margin-top: 12px; }
+
+/* Servicios: pergaminos ------------------------------------------------- */
+.plans { align-items: stretch; gap: 26px; }
+.plans .scroll { display: flex; flex-direction: column; gap: 12px; padding-top: 30px; }
+.plans h3 { font-size: 1.45rem; }
+.plans .muted { font-size: 0.92rem; }
+.ticks { list-style: none; margin: 4px 0 0; padding: 14px 0 0; border-top: 1px dashed var(--ln); display: grid; gap: 8px; font-size: 0.88rem; }
+.ticks li { display: flex; gap: 10px; align-items: baseline; }
+.ticks li::before { content: ""; width: 8px; height: 8px; background: var(--pr); transform: rotate(45deg) translateY(-1px); flex: 0 0 auto; }
+.price { margin-top: auto; padding-top: 10px; font-family: var(--display); font-weight: var(--dw); font-size: 1.9rem; line-height: 1; }
+.price span { font-family: var(--body); font-size: 0.85rem; color: var(--mu); font-weight: 500; }
+.featured { border: 2px solid var(--pr); transform: translateY(-10px); box-shadow: 0 18px 40px -22px color-mix(in oklab, var(--pr) 70%, transparent); }
+.ribbon {
+  position: absolute; top: -7px; right: 18px; z-index: 2;
+  background: var(--pr); color: var(--op); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em;
+  padding: 18px 10px 12px; clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
+}
+
+/* El sensei ------------------------------------------------------------- */
+.sensei { gap: 48px; align-items: center; }
+.dojo-art { margin: 0; }
+.dojo-art svg { width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--ln); box-shadow: 0 24px 50px -30px color-mix(in oklab, var(--fg) 60%, transparent); }
+.dojo-art figcaption { margin-top: 10px; }
+.nafuda-row { display: flex; flex-wrap: wrap; gap: 18px 14px; margin-top: 30px; }
+.nafuda {
+  position: relative; padding: 9px 14px; font-size: 0.8rem; font-weight: 700;
+  background: linear-gradient(color-mix(in oklab, var(--a2) 30%, var(--sf)), color-mix(in oklab, var(--a2) 18%, var(--sf)));
+  border: 1px solid color-mix(in oklab, var(--a2) 60%, var(--ln)); border-radius: 3px; color: var(--fg);
+}
+.nafuda::before {
+  content: ""; position: absolute; left: 50%; top: -9px; width: 16px; height: 16px; margin-left: -8px;
+  border-top: 1.5px solid var(--mu); border-left: 1.5px solid var(--mu); transform: rotate(45deg);
+}
+.nafuda::after {
+  content: ""; position: absolute; left: 50%; top: -13px; width: 6px; height: 6px; margin-left: -3px;
+  border-radius: 50%; background: var(--a2);
+}
+
+/* Cómo funciona: página de manga --------------------------------------- */
+.manga {
+  display: grid; gap: 12px; padding: 12px; background: var(--fg); border-radius: 6px;
+  grid-template-columns: 1.15fr 0.85fr; grid-template-rows: auto auto;
+}
+.panel-m {
+  position: relative; background: var(--sf); color: var(--fg); padding: 26px 24px 30px;
+  min-height: 230px; display: flex; flex-direction: column; gap: 10px; overflow: hidden;
+}
+.panel-m h3 { font-size: 1.5rem; margin-top: 4px; }
+.panel-m p { max-width: 34ch; font-size: 0.94rem; color: var(--mu); }
+.panel-m .sfx { position: absolute; right: 18px; top: 18px; font-size: 1.9rem; }
+.panel-m .sfx.big { font-size: 3rem; }
+.panel-m .m-art { position: absolute; right: 18px; bottom: 16px; width: 74px; height: 74px; color: color-mix(in oklab, var(--pr) 30%, var(--ln)); }
+.panel-m.p4 .m-art { width: 130px; height: 52px; }
+.panel-m.p1 { clip-path: polygon(0 0, 100% 0, 96% 100%, 0 100%); }
+.panel-m.p2 { clip-path: polygon(3% 0, 100% 0, 100% 100%, 0 100%); margin-left: -12px; padding-left: 36px; }
+.panel-m.p3 { clip-path: polygon(0 0, 97% 0, 100% 100%, 0 100%); }
+.panel-m.p4 { clip-path: polygon(0 0, 100% 0, 100% 100%, 4% 100%); margin-left: -12px; padding-left: 40px; background: var(--ac); }
+.panel-m.p4 p { color: var(--fg); }
+.panel-m.p2, .panel-m.p3 { background: var(--sf2); }
+
+/* Testimonios ----------------------------------------------------------- */
+.voices { gap: 30px; }
+.voices figure { margin: 0; display: flex; flex-direction: column; gap: 30px; }
+.voices blockquote { margin: 0; font-family: var(--display); font-weight: var(--dw); font-size: 1.02rem; line-height: 1.5; flex: 1; }
+:root[data-type="manga"] .voices blockquote { font-family: var(--body); font-weight: 600; }
+.who { display: flex; align-items: center; gap: 10px; margin-left: 16px; }
+.who b { font-size: 0.88rem; }
+.who .muted { font-size: 0.78rem; }
+
+/* Preguntas ------------------------------------------------------------- */
+details.faq { border-bottom: 1px solid var(--ln); background: var(--sf); border-radius: 8px; margin-bottom: 10px; padding: 0 16px; }
+details.faq summary {
+  cursor: pointer; padding: 14px 0; font-weight: 700; list-style: none;
+  display: flex; gap: 14px; min-height: 56px; align-items: center;
+}
+details.faq summary::-webkit-details-marker { display: none; }
+details.faq summary::after { content: "+"; margin-left: auto; color: var(--pr); font-size: 1.5rem; line-height: 1; font-weight: 400; }
+details.faq[open] summary::after { content: "−"; }
+details.faq p { padding: 0 0 18px 48px; color: var(--mu); max-width: 66ch; position: relative; }
+details.faq p .jp { position: absolute; left: 10px; top: 0; color: var(--a2); font-size: 1.1rem; }
+
+/* Contacto -------------------------------------------------------------- */
+.gate svg { width: 100%; height: clamp(180px, 28vw, 300px); }
+.contact { padding-top: 48px; }
+.formgrid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); padding: 26px; }
+.full { grid-column: 1 / -1; }
+
+/* Pie ------------------------------------------------------------------- */
+footer.site { margin-top: 40px; font-size: 0.88rem; }
+footer.site .ridge { width: 100%; height: 90px; margin-bottom: -1px; }
+.foot-in { background: var(--near); color: color-mix(in oklab, var(--sky2) 30%, white); padding: 10px 0 48px; }
+.foot-in a { text-decoration: none; color: inherit; }
+.foot-in a:hover { text-decoration: underline; }
+.foot-in .demo-flag { color: inherit; }
+.motto { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; padding-bottom: 26px; margin-bottom: 26px; border-bottom: 1px solid color-mix(in oklab, currentColor 25%, transparent); }
+.motto .jp { font-size: clamp(1.5rem, 4vw, 2.3rem); color: var(--sun); }
+.motto span:last-child { opacity: .8; font-style: italic; }
+.foot-cols { align-items: flex-start; flex-wrap: wrap; gap: 26px; }
+
+/* Tablet: el texto ocupa más ancho, así que el velo también ----------- */
+@media (min-width: 761px) and (max-width: 1100px) {
+  .hero-scrim { background: linear-gradient(90deg, var(--bg) 0%, color-mix(in oklab, var(--bg) 90%, transparent) 50%, transparent 82%); }
+}
+
+/* Móvil ----------------------------------------------------------------- */
+@media (max-width: 760px) {
+  .hero { flex-direction: column; min-height: 0; align-items: stretch; }
+  .hero-scene { position: relative; height: 330px; }
+  .hero-scrim { top: 0; height: 330px; background: linear-gradient(transparent 60%, var(--bg)); }
+  .hero-in { padding-top: 6px; padding-bottom: 40px; }
+  .nobori { padding: 14px 9px 22px; right: auto; left: 16px; gap: 0; }
+  .nobori .tate { font-size: 1.6rem; }
+  .nobori small { display: none; }
+  .featured { transform: none; }
+  .manga { grid-template-columns: 1fr; }
+  .panel-m, .panel-m.p1, .panel-m.p2, .panel-m.p3, .panel-m.p4 { clip-path: none; margin-left: 0; padding-left: 22px; min-height: 0; }
+  .panel-m .m-art { opacity: .5; }
+  details.faq p { padding-left: 0; padding-top: 24px; }
+  details.faq p .jp { left: 0; }
+}

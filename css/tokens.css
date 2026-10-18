@@ -1,0 +1,150 @@
+/* ===========================================================================
+   TOKENS — cuatro paletas japonesas, cada una con juego claro (--l-*) y
+   oscuro (--d-*). El mapeo a los nombres que usa la interfaz se escribe una
+   sola vez al final.
+
+   Interfaz:  bg sf sf2 fg mu ln  pr op  ac oa  a2  ok wn dg
+   Escenas:   sky1 sky2 sun far near petal
+
+   pr = acento principal, op = texto sobre pr, ac/oa = acento suave y su texto,
+   a2 = segundo acento (oro, sello rojo...), solo para decoración y titulares.
+   Contraste medido con tools/contraste.mjs.
+   =========================================================================== */
+
+/* TEMPLO — laca negra, bermellón y oro (paleta por defecto) */
+:root {
+  --l-bg: oklch(0.965 0.018 80);   --d-bg: oklch(0.165 0.014 30);
+  --l-sf: oklch(0.99 0.008 85);    --d-sf: oklch(0.21 0.018 30);
+  --l-sf2: oklch(0.93 0.026 75);   --d-sf2: oklch(0.265 0.022 30);
+  --l-fg: oklch(0.21 0.02 30);     --d-fg: oklch(0.945 0.02 80);
+  --l-mu: oklch(0.45 0.03 40);     --d-mu: oklch(0.755 0.03 70);
+  --l-ln: oklch(0.855 0.032 70);   --d-ln: oklch(0.335 0.028 30);
+  --l-pr: oklch(0.52 0.19 33);     --d-pr: oklch(0.67 0.185 35);
+  --l-op: oklch(0.99 0.01 80);     --d-op: oklch(0.15 0.02 30);
+  --l-ac: oklch(0.915 0.045 55);   --d-ac: oklch(0.305 0.06 33);
+  --l-oa: oklch(0.39 0.13 33);     --d-oa: oklch(0.89 0.06 55);
+  --l-a2: oklch(0.6 0.12 80);      --d-a2: oklch(0.81 0.13 85);
+  --l-ok: oklch(0.47 0.1 150);     --d-ok: oklch(0.77 0.12 150);
+  --l-wn: oklch(0.5 0.11 70);      --d-wn: oklch(0.82 0.12 80);
+  --l-dg: oklch(0.48 0.18 18);     --d-dg: oklch(0.73 0.15 18);
+
+  --l-sky1: oklch(0.88 0.06 55);   --d-sky1: oklch(0.19 0.035 30);
+  --l-sky2: oklch(0.96 0.035 85);  --d-sky2: oklch(0.46 0.13 42);
+  --l-sun: oklch(0.6 0.2 33);      --d-sun: oklch(0.67 0.19 35);
+  --l-far: oklch(0.78 0.05 40);    --d-far: oklch(0.28 0.045 30);
+  --l-near: oklch(0.28 0.03 30);   --d-near: oklch(0.11 0.01 30);
+  --l-petal: oklch(0.86 0.07 10);  --d-petal: oklch(0.82 0.08 10);
+}
+
+/* WASHI — papel crema, tinta sumi y sello rojo */
+:root[data-palette="washi"] {
+  --l-bg: oklch(0.955 0.02 90);    --d-bg: oklch(0.17 0.006 260);
+  --l-sf: oklch(0.985 0.012 90);   --d-sf: oklch(0.215 0.008 260);
+  --l-sf2: oklch(0.915 0.026 85);  --d-sf2: oklch(0.27 0.01 260);
+  --l-fg: oklch(0.19 0.006 260);   --d-fg: oklch(0.935 0.02 90);
+  --l-mu: oklch(0.43 0.012 260);   --d-mu: oklch(0.74 0.015 90);
+  --l-ln: oklch(0.845 0.025 85);   --d-ln: oklch(0.33 0.01 260);
+  --l-pr: oklch(0.24 0.01 260);    --d-pr: oklch(0.92 0.025 90);
+  --l-op: oklch(0.97 0.018 90);    --d-op: oklch(0.18 0.006 260);
+  --l-ac: oklch(0.895 0.03 85);    --d-ac: oklch(0.3 0.012 260);
+  --l-oa: oklch(0.3 0.02 60);      --d-oa: oklch(0.89 0.02 90);
+  --l-a2: oklch(0.53 0.19 28);     --d-a2: oklch(0.68 0.18 28);
+  --l-ok: oklch(0.46 0.09 150);    --d-ok: oklch(0.77 0.11 150);
+  --l-wn: oklch(0.49 0.11 70);     --d-wn: oklch(0.82 0.12 80);
+  --l-dg: oklch(0.5 0.19 28);      --d-dg: oklch(0.72 0.16 25);
+
+  --l-sky1: oklch(0.935 0.02 90);  --d-sky1: oklch(0.2 0.008 260);
+  --l-sky2: oklch(0.895 0.03 85);  --d-sky2: oklch(0.42 0.02 260);
+  --l-sun: oklch(0.55 0.2 28);     --d-sun: oklch(0.66 0.19 28);
+  --l-far: oklch(0.78 0.012 260);  --d-far: oklch(0.34 0.01 260);
+  --l-near: oklch(0.24 0.008 260); --d-near: oklch(0.12 0.005 260);
+  --l-petal: oklch(0.87 0.05 15);  --d-petal: oklch(0.8 0.05 15);
+}
+
+/* SAKURA — rosa cerezo y ciruela */
+:root[data-palette="sakura"] {
+  --l-bg: oklch(0.972 0.014 350);  --d-bg: oklch(0.18 0.025 340);
+  --l-sf: oklch(0.995 0.005 350);  --d-sf: oklch(0.222 0.03 340);
+  --l-sf2: oklch(0.935 0.028 350); --d-sf2: oklch(0.28 0.036 340);
+  --l-fg: oklch(0.24 0.04 340);    --d-fg: oklch(0.95 0.015 350);
+  --l-mu: oklch(0.46 0.045 340);   --d-mu: oklch(0.765 0.03 350);
+  --l-ln: oklch(0.87 0.035 350);   --d-ln: oklch(0.345 0.04 340);
+  --l-pr: oklch(0.5 0.17 358);     --d-pr: oklch(0.79 0.11 358);
+  --l-op: oklch(0.99 0.008 350);   --d-op: oklch(0.2 0.04 340);
+  --l-ac: oklch(0.915 0.05 355);   --d-ac: oklch(0.33 0.07 355);
+  --l-oa: oklch(0.38 0.12 355);    --d-oa: oklch(0.89 0.06 355);
+  --l-a2: oklch(0.47 0.13 320);    --d-a2: oklch(0.76 0.1 320);
+  --l-ok: oklch(0.47 0.1 155);     --d-ok: oklch(0.77 0.12 155);
+  --l-wn: oklch(0.5 0.11 65);      --d-wn: oklch(0.82 0.12 78);
+  --l-dg: oklch(0.49 0.18 25);     --d-dg: oklch(0.74 0.15 25);
+
+  --l-sky1: oklch(0.92 0.045 350); --d-sky1: oklch(0.21 0.04 330);
+  --l-sky2: oklch(0.97 0.025 60);  --d-sky2: oklch(0.45 0.1 350);
+  --l-sun: oklch(0.63 0.17 15);    --d-sun: oklch(0.79 0.12 358);
+  --l-far: oklch(0.8 0.045 330);   --d-far: oklch(0.3 0.05 335);
+  --l-near: oklch(0.32 0.05 340);  --d-near: oklch(0.14 0.03 340);
+  --l-petal: oklch(0.84 0.09 355); --d-petal: oklch(0.83 0.09 355);
+}
+
+/* NOCHE EN KIOTO — índigo y oro de farolillo */
+:root[data-palette="kioto"] {
+  --l-bg: oklch(0.968 0.01 260);   --d-bg: oklch(0.17 0.04 268);
+  --l-sf: oklch(0.995 0.004 260);  --d-sf: oklch(0.212 0.048 268);
+  --l-sf2: oklch(0.93 0.022 260);  --d-sf2: oklch(0.27 0.055 268);
+  --l-fg: oklch(0.22 0.05 265);    --d-fg: oklch(0.95 0.012 85);
+  --l-mu: oklch(0.45 0.05 265);    --d-mu: oklch(0.77 0.03 260);
+  --l-ln: oklch(0.865 0.028 260);  --d-ln: oklch(0.34 0.05 268);
+  --l-pr: oklch(0.4 0.14 265);     --d-pr: oklch(0.83 0.13 82);
+  --l-op: oklch(0.99 0.005 260);   --d-op: oklch(0.18 0.04 268);
+  --l-ac: oklch(0.91 0.04 265);    --d-ac: oklch(0.32 0.07 268);
+  --l-oa: oklch(0.35 0.12 265);    --d-oa: oklch(0.89 0.05 265);
+  --l-a2: oklch(0.62 0.13 75);     --d-a2: oklch(0.74 0.11 265);
+  --l-ok: oklch(0.47 0.1 155);     --d-ok: oklch(0.78 0.12 155);
+  --l-wn: oklch(0.5 0.11 65);      --d-wn: oklch(0.83 0.12 82);
+  --l-dg: oklch(0.49 0.18 25);     --d-dg: oklch(0.74 0.15 25);
+
+  --l-sky1: oklch(0.84 0.055 262); --d-sky1: oklch(0.16 0.05 268);
+  --l-sky2: oklch(0.94 0.045 75);  --d-sky2: oklch(0.42 0.1 280);
+  --l-sun: oklch(0.79 0.14 75);    --d-sun: oklch(0.86 0.12 85);
+  --l-far: oklch(0.69 0.06 265);   --d-far: oklch(0.26 0.06 268);
+  --l-near: oklch(0.25 0.05 265);  --d-near: oklch(0.11 0.03 268);
+  --l-petal: oklch(0.88 0.045 330); --d-petal: oklch(0.85 0.05 330);
+}
+
+/* Mapeo claro/oscuro, escrito una sola vez -------------------------------- */
+:root {
+  --bg: var(--l-bg); --sf: var(--l-sf); --sf2: var(--l-sf2);
+  --fg: var(--l-fg); --mu: var(--l-mu); --ln: var(--l-ln);
+  --pr: var(--l-pr); --op: var(--l-op); --ac: var(--l-ac); --oa: var(--l-oa);
+  --a2: var(--l-a2); --ok: var(--l-ok); --wn: var(--l-wn); --dg: var(--l-dg);
+  --sky1: var(--l-sky1); --sky2: var(--l-sky2); --sun: var(--l-sun);
+  --far: var(--l-far); --near: var(--l-near); --petal: var(--l-petal);
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: var(--d-bg); --sf: var(--d-sf); --sf2: var(--d-sf2);
+    --fg: var(--d-fg); --mu: var(--d-mu); --ln: var(--d-ln);
+    --pr: var(--d-pr); --op: var(--d-op); --ac: var(--d-ac); --oa: var(--d-oa);
+    --a2: var(--d-a2); --ok: var(--d-ok); --wn: var(--d-wn); --dg: var(--d-dg);
+    --sky1: var(--d-sky1); --sky2: var(--d-sky2); --sun: var(--d-sun);
+    --far: var(--d-far); --near: var(--d-near); --petal: var(--d-petal);
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+:root[data-theme="dark"] {
+  --bg: var(--d-bg); --sf: var(--d-sf); --sf2: var(--d-sf2);
+  --fg: var(--d-fg); --mu: var(--d-mu); --ln: var(--d-ln);
+  --pr: var(--d-pr); --op: var(--d-op); --ac: var(--d-ac); --oa: var(--d-oa);
+  --a2: var(--d-a2); --ok: var(--d-ok); --wn: var(--d-wn); --dg: var(--d-dg);
+  --sky1: var(--d-sky1); --sky2: var(--d-sky2); --sun: var(--d-sun);
+  --far: var(--d-far); --near: var(--d-near); --petal: var(--d-petal);
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Tipografías de titular --------------------------------------------------- */
+:root { --display: "Dela Gothic One", "Hiragino Sans", system-ui, sans-serif; --dw: 400; }
+:root[data-type="mincho"] { --display: "Shippori Mincho", "Yu Mincho", Georgia, serif; --dw: 800; }
+/* Pincel: brocha latina para el texto y caligrafía japonesa para los kanji */
+:root[data-type="pincel"] { --display: "Kaushan Script", "Yuji Syuku", "Yu Mincho", cursive; --dw: 400; }
+:root { --body: "Inter", system-ui, -apple-system, sans-serif; }

@@ -1,0 +1,216 @@
+/* ===========================================================================
+   ÁREA DEL ALUMNO (dentro de un marco de móvil)
+   =========================================================================== */
+.student-wrap { padding-top: 36px; padding-bottom: 64px; }
+.student-layout { display: grid; grid-template-columns: 230px 1fr; gap: 30px; align-items: start; }
+
+.screenpick { display: flex; flex-direction: column; gap: 6px; position: sticky; top: 130px; }
+.pick {
+  background: var(--sf); border: 1px solid var(--ln); border-radius: 6px; padding: 10px 14px;
+  font-size: 0.85rem; cursor: pointer; min-height: 44px; color: var(--mu); text-align: left; font-weight: 600;
+}
+.pick[aria-pressed="true"] { background: var(--pr); color: var(--op); border-color: var(--pr); }
+
+.phone {
+  width: 100%; max-width: 390px; margin: 0 auto;
+  border: 10px solid color-mix(in oklab, var(--fg) 85%, var(--bg));
+  border-radius: 42px; overflow: hidden; background: var(--bg);
+  box-shadow: 0 30px 60px -28px color-mix(in oklab, var(--fg) 60%, transparent), 0 0 0 1px var(--ln);
+}
+.phone-top { height: 26px; background: var(--sf); display: grid; place-items: center; }
+.phone-top i { display: block; width: 84px; height: 5px; border-radius: 999px; background: var(--ln); }
+.screen { display: none; min-height: 640px; flex-direction: column; position: relative; }
+.screen.on { display: flex; }
+
+.appbar {
+  padding: 14px 16px 12px; display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  border-bottom: 1px solid var(--ln); background: var(--sf);
+  background-image: linear-gradient(90deg, transparent, color-mix(in oklab, var(--pr) 7%, transparent));
+}
+.appbar h3 { font-size: 1.18rem; }
+.appbody { padding: 16px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+
+.small { font-size: 0.82rem; }
+.xs { font-size: 0.74rem; }
+.small-b { font-size: 0.9rem; font-weight: 800; }
+
+/* Barra inferior con iconos propios (la rellena js/app.js) */
+.tabbar { display: flex; border-top: 1px solid var(--ln); background: var(--sf); position: sticky; bottom: 0; }
+.tabbar button {
+  flex: 1; background: none; border: 0; padding: 9px 2px 11px; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  font-size: 0.64rem; font-weight: 600; color: var(--mu); min-height: 56px; position: relative;
+}
+.tabbar svg { width: 22px; height: 22px; }
+.tabbar button[aria-pressed="true"] { color: var(--pr); font-weight: 800; }
+.tabbar button[aria-pressed="true"]::before {
+  content: ""; position: absolute; top: -1px; left: 28%; right: 28%; height: 3px; background: var(--pr); border-radius: 0 0 3px 3px;
+}
+
+.minicard { background: var(--sf); border: 1px solid var(--ln); border-radius: 10px; padding: 14px; }
+
+/* Rango */
+.rank {
+  display: inline-flex; align-items: center; gap: 7px; white-space: nowrap;
+  background: var(--fg); color: var(--bg); border-radius: 999px; padding: 5px 12px 5px 6px;
+  font-size: 0.74rem; font-weight: 800;
+}
+.rank .jp { background: var(--pr); color: var(--op); border-radius: 999px; padding: 3px 7px; font-size: 0.72rem; }
+.rank.sm { font-size: 0.7rem; padding: 3px 9px 3px 4px; }
+
+/* Nivel de poder */
+.power {
+  border-radius: 12px; padding: 16px; color: var(--fg);
+  background: linear-gradient(135deg, var(--ac), var(--sf));
+  border: 2px solid var(--fg);
+  box-shadow: 4px 4px 0 var(--pr);
+}
+.power .label { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 800; }
+.power .lvl { color: var(--pr); font-size: 1rem; }
+.power-num { display: block; font-family: var(--display); font-weight: var(--dw); font-size: 2.6rem; line-height: 1.05; margin: 4px 0 10px; letter-spacing: 0.01em; }
+.power-bar { height: 14px; border-radius: 3px; background: var(--sf2); border: 2px solid var(--fg); overflow: hidden; }
+.power-bar i {
+  display: block; height: 100%;
+  background: repeating-linear-gradient(-45deg, var(--pr) 0 8px, color-mix(in oklab, var(--pr) 75%, var(--a2)) 8px 16px);
+  transform-origin: left; animation: grow 1.2s cubic-bezier(.2, .8, .2, 1) both;
+}
+.power p { margin-top: 8px; }
+@keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* Racha de farolillos */
+.lanterns { display: flex; justify-content: space-between; gap: 4px; margin-top: 12px; }
+.lanterns svg { width: 34px; height: 51px; filter: drop-shadow(0 0 6px color-mix(in oklab, var(--sun) 60%, transparent)); animation: flicker 3s ease-in-out infinite alternate; }
+.lanterns svg:nth-child(2) { animation-delay: .4s; } .lanterns svg:nth-child(3) { animation-delay: .9s; }
+.lanterns svg:nth-child(4) { animation-delay: 1.3s; } .lanterns svg:nth-child(5) { animation-delay: .2s; }
+.lanterns svg.off { --lt: var(--ln); filter: none; animation: none; opacity: .8; }
+@keyframes flicker { from { opacity: .82; } to { opacity: 1; } }
+
+/* Entrenamiento de hoy en pergamino */
+.today { margin: 8px 4px; padding: 22px 16px 18px; }
+.today h4 { font-size: 1.35rem; margin-top: 8px; }
+.today .eyebrow .jp { font-size: 0.9rem; }
+
+/* Barra de objetivo con forma de hoja de katana */
+.katana { height: 9px; margin-top: 7px; background: var(--sf2); border-radius: 0 9px 9px 0; overflow: hidden; position: relative; }
+.katana i {
+  display: block; height: 100%;
+  background: linear-gradient(90deg, color-mix(in oklab, var(--pr) 70%, var(--fg)), var(--pr));
+  border-radius: 0 9px 9px 0; transform-origin: left; animation: grow 1s ease-out both;
+}
+.katana.done i { background: linear-gradient(90deg, color-mix(in oklab, var(--ok) 70%, var(--fg)), var(--ok)); }
+
+.letter { border-left: 4px solid var(--pr); }
+
+/* Alta: piedras del camino */
+.stones { display: flex; gap: 10px; list-style: none; padding: 0; margin: 0; align-items: center; }
+.stones li { flex: 1; height: 14px; border-radius: 50%; background: var(--sf2); border: 2px solid var(--ln); }
+.stones li.done { background: var(--pr); border-color: var(--pr); }
+.stones li.now { background: var(--ac); border-color: var(--pr); }
+.ta { width: 100%; margin-top: 10px; background: var(--bg); border: 1px solid var(--ln); border-radius: 8px; padding: 10px; }
+.consent { border: 2px solid var(--pr); }
+.consent label { cursor: pointer; }
+
+/* Acceso */
+.login-scene { position: relative; height: 250px; overflow: hidden; }
+.login-scene svg { width: 100%; height: 100%; }
+.login-body { gap: 14px; }
+
+/* Rutina */
+.exrow { display: flex; gap: 12px; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--ln); }
+.exrow:last-child { border-bottom: 0; }
+.exrow.link { cursor: pointer; }
+.thumb {
+  width: 60px; height: 48px; border-radius: 8px; flex: 0 0 auto; position: relative;
+  display: grid; place-items: center; color: var(--fg);
+  background: radial-gradient(circle at 70% 30%, color-mix(in oklab, var(--sun) 45%, transparent) 0 12px, transparent 13px), var(--sf2);
+  border: 1px solid var(--ln);
+}
+.thumb svg { width: 40px; height: 20px; }
+.thumb.play::after {
+  content: "▶"; position: absolute; right: -6px; bottom: -6px;
+  width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center;
+  font-size: 0.6rem; background: var(--pr); color: var(--op); border: 2px solid var(--sf);
+}
+.sensei-note { display: flex; gap: 10px; align-items: flex-start; padding-top: 10px; border-top: 1px dashed var(--ln); }
+.sensei-note p { font-size: 0.83rem; }
+.sensei-note.warn .hanko { --hk: var(--wn); }
+
+/* Modo entrenamiento */
+.setrow { display: flex; align-items: center; gap: 8px; padding: 9px 0; border-bottom: 1px solid var(--ln); }
+.setrow:last-child { border-bottom: 0; }
+.setrow .idx {
+  width: 28px; height: 28px; border-radius: 6px; background: var(--sf2); flex: 0 0 auto;
+  display: grid; place-items: center; font-family: var(--display); font-weight: var(--dw); font-size: 0.85rem;
+}
+.setrow input[type="text"] { width: 56px; background: var(--bg); border: 1px solid var(--ln); border-radius: 6px; padding: 8px 6px; text-align: center; font-size: 0.86rem; min-height: 40px; }
+.tick {
+  width: 44px; height: 44px; border-radius: 8px; border: 2px solid var(--ln); background: var(--bg);
+  cursor: pointer; display: grid; place-items: center; margin-left: auto; flex: 0 0 auto; font-weight: 800;
+}
+.tick[aria-pressed="true"] { background: var(--ok); border-color: var(--ok); color: var(--bg); }
+.setrow.done .idx { background: var(--ok); color: var(--bg); }
+
+.timer { text-align: center; padding: 16px; border-radius: 12px; background: var(--ac); color: var(--oa); }
+.enso-timer { position: relative; width: 150px; height: 150px; margin: 0 auto; }
+.enso-timer svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.enso-timer .track { fill: none; stroke: color-mix(in oklab, var(--oa) 15%, transparent); stroke-width: 9; }
+.enso-timer .ring { fill: none; stroke: var(--pr); stroke-width: 9; stroke-linecap: round; stroke-dasharray: 314.16; stroke-dashoffset: 0; }
+.enso-in { position: absolute; inset: 0; display: grid; place-content: center; }
+.enso-in .label { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 800; }
+.enso-in b { font-family: var(--display); font-weight: var(--dw); font-size: 2.2rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+
+/* Progreso */
+.stairs svg { width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--ln); }
+.badges { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 8px; margin-top: 14px; }
+.badge { display: flex; flex-direction: column; align-items: center; gap: 7px; text-align: center; font-size: 0.7rem; font-weight: 700; }
+.badge .hanko { width: 56px; height: 56px; font-size: 1.3rem; letter-spacing: -0.04em; }
+.badge.locked { color: var(--mu); }
+.ink-chart { width: 100%; height: auto; margin-top: 12px; }
+.ink-chart .axis { stroke: var(--ln); stroke-width: 1; }
+.ink-chart .dash { stroke-dasharray: 3 4; }
+.ink-chart .brush { fill: none; stroke: var(--pr); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; opacity: .9; }
+.ink-chart .brush.thin { stroke: var(--fg); stroke-width: 1.2; opacity: .5; transform: translate(1px, 2px); }
+.ink-chart .dot { fill: var(--sf); stroke: var(--pr); stroke-width: 3.5; }
+.ink-chart .tick-l { font-size: 10px; fill: var(--mu); }
+.ink-chart .val { font-size: 12px; fill: var(--pr); font-weight: 800; }
+.dots { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
+.dots i { width: 16px; height: 16px; border-radius: 50%; background: var(--ok); }
+.dots i.miss { background: transparent; border: 2px dashed var(--ln); }
+
+.measures { grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 11px; }
+.measures .stat b { font-size: 1.4rem; }
+.measures .stat { flex-direction: column; align-items: flex-start; gap: 2px; }
+
+/* Chat */
+.chat-body { justify-content: flex-end; }
+.bubble { max-width: 84%; padding: 10px 14px; border-radius: 18px; font-size: 0.87rem; border: 2px solid var(--fg); }
+.bubble.them { background: var(--sf); border-bottom-left-radius: 4px; align-self: flex-start; }
+.bubble.me { background: var(--pr); color: var(--op); border-color: var(--pr); border-bottom-right-radius: 4px; align-self: flex-end; }
+.bubble.shout { border-radius: 6px; box-shadow: 3px 3px 0 var(--fg); }
+.bubble .jp { font-size: 0.95rem; }
+.composer { margin-top: 8px; gap: 7px; flex-wrap: nowrap; }
+.composer input { flex: 1; min-width: 0; background: var(--bg); border: 2px solid var(--ln); border-radius: 999px; padding: 11px 15px; min-height: 46px; }
+.composer .btn { border-radius: 50%; width: 46px; padding: 0; box-shadow: none; }
+
+/* Perfil: carné del dojo */
+.dojo-card {
+  border-radius: 12px; padding: 16px; border: 2px solid var(--fg);
+  background: linear-gradient(135deg, var(--sf), var(--ac));
+}
+.dojo-card .name { display: block; font-family: var(--display); font-weight: var(--dw); font-size: 1.15rem; margin-top: 8px; line-height: 1.2; }
+.dojo-card .stat { flex-direction: column; align-items: flex-start; gap: 0; }
+.dojo-card .stat b { font-size: 1.3rem; }
+.dojo-card .eyebrow .jp { font-size: 0.85rem; }
+
+/* Vacío */
+.empty { justify-content: center; text-align: center; gap: 16px; }
+.enso-big { position: relative; width: 140px; height: 140px; margin: 0 auto; color: var(--pr); }
+.enso-big svg { width: 100%; height: 100%; }
+.enso-big .jp { position: absolute; inset: 0; display: grid; place-items: center; font-size: 1.15rem; color: var(--fg); }
+.empty h4 { font-size: 1.15rem; }
+
+@media (max-width: 860px) {
+  .student-layout { grid-template-columns: 1fr; }
+  .screenpick { position: static; flex-direction: row; flex-wrap: wrap; }
+  .pick { padding: 8px 12px; font-size: 0.8rem; }
+}
