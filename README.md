@@ -1,7 +1,7 @@
 # chuckyfitness — prototipo visual
 
 Prototipo navegable de la plataforma para enseñar al cliente: web pública, área
-del alumno y panel del entrenador, con estética de **dojo de templo japonés** y
+del alumno y panel del entrenador, con estética de **dojo de templo japonés** en negro y rojo, y
 guiños de manga. Un selector de paleta, de tipografía y de tema claro/oscuro
 repinta la web entera al momento, ilustraciones incluidas.
 
@@ -23,7 +23,7 @@ para poder publicarse tal cual en un hosting estático.
 | `css/alumno.css`      | Área del alumno.                                                  |
 | `css/panel.css`       | Panel del entrenador.                                             |
 | `js/app.js`           | Navegación, series, «¡ドン!», temporizador y selectores.           |
-| `js/sakura.js`        | Pétalos de sakura cayendo.                                        |
+| `js/brasas.js`        | Brasas que suben en la portada y en el acceso.                    |
 | `tools/contraste.mjs` | Mide el contraste WCAG de las paletas: `node tools/contraste.mjs` |
 | `.htaccess`           | Fuerza UTF-8 y pide a los buscadores que no lo indexen.           |
 | `robots.txt`          | Lo mismo, para los buscadores que no leen cabeceras.              |

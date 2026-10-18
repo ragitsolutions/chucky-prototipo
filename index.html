@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es" data-palette="templo" data-type="manga">
+<html lang="es" data-palette="templo" data-type="manga" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -51,7 +51,6 @@
       <use href="#sg-fan" x="20" y="30"/>
     </pattern>
 
-    <path id="pp" d="M0 -2 C-6 -6 -7 -13 -4 -17 C-2 -19 -1 -18 0 -15 C1 -18 2 -19 4 -17 C7 -13 6 -6 0 -2 Z"/>
   </defs>
 
   <symbol id="torii" viewBox="0 0 200 170">
@@ -86,14 +85,27 @@
     <path fill="currentColor" d="M10 44 Q8 30 24 29 Q26 15 44 17 Q52 4 70 10 Q84 1 97 14 Q112 7 121 22 Q140 17 147 30 Q170 25 177 38 Q192 37 192 44 Z"/>
   </symbol>
 
-  <symbol id="petal" viewBox="-8 -20 16 19"><use href="#pp" fill="currentColor"/></symbol>
-
-  <symbol id="blossom" viewBox="-20 -20 40 40">
+  <!-- Atleta en press por encima de la cabeza, con hachimaki y cinturón -->
+  <symbol id="athlete" viewBox="0 0 240 320">
     <g fill="currentColor">
-      <use href="#pp"/><use href="#pp" transform="rotate(72)"/><use href="#pp" transform="rotate(144)"/>
-      <use href="#pp" transform="rotate(216)"/><use href="#pp" transform="rotate(288)"/>
+      <rect x="0" y="26" width="240" height="6" rx="3"/>
+      <rect x="10" y="0" width="16" height="58" rx="3"/><rect x="28" y="8" width="9" height="42" rx="2"/>
+      <rect x="214" y="0" width="16" height="58" rx="3"/><rect x="203" y="8" width="9" height="42" rx="2"/>
+      <circle cx="120" cy="96" r="17"/>
+      <rect x="112" y="106" width="16" height="14"/>
+      <path d="M135 89 Q158 80 178 90 L173 97 Q156 88 135 95 Z"/>
+      <path d="M135 95 Q155 99 168 113 L161 116 Q150 104 135 100 Z"/>
+      <path d="M92 112 Q120 103 148 112 L152 126 L137 192 L103 192 L88 126 Z"/>
+      <path d="M100 190 L140 190 L147 224 L93 224 Z"/>
+      <rect x="70" y="306" width="26" height="10" rx="4"/><rect x="144" y="306" width="26" height="10" rx="4"/>
     </g>
-    <circle r="3.2" style="fill:var(--a2)"/>
+    <g style="fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round">
+      <path d="M80 32 L86 76 L101 113" stroke-width="17"/>
+      <path d="M160 32 L154 76 L139 113" stroke-width="17"/>
+      <path d="M108 214 L92 258 L84 308" stroke-width="22"/>
+      <path d="M132 214 L148 258 L157 308" stroke-width="22"/>
+    </g>
+    <rect x="101" y="184" width="38" height="10" rx="2" style="fill:var(--pr)"/>
   </symbol>
 
   <symbol id="lantern" viewBox="0 0 40 60">
@@ -143,9 +155,9 @@
       <label for="pal">Paleta</label>
       <select id="pal">
         <option value="templo">Templo — laca, bermellón y oro</option>
-        <option value="washi">Washi — papel, tinta y sello</option>
-        <option value="sakura">Sakura — cerezo y ciruela</option>
-        <option value="kioto">Noche en Kioto — índigo y oro</option>
+        <option value="ronin">Ronin — negro y rojo sangre</option>
+        <option value="oni">Oni — carbón y rojo fuego</option>
+        <option value="sumi">Sumi — tinta y sello rojo</option>
       </select>
     </div>
 
@@ -186,44 +198,36 @@
         <rect width="1200" height="640" fill="url(#g-sky)"/>
         <circle cx="860" cy="250" r="260" fill="url(#g-glow)"/>
         <circle cx="860" cy="250" r="150" style="fill:var(--sun)"/>
-        <use href="#cloud" x="610" y="250" width="380" height="95" style="color:color-mix(in oklab, var(--sky2) 80%, white);opacity:.85"/>
-        <use href="#cloud" x="880" y="150" width="300" height="75" style="color:color-mix(in oklab, var(--sky1) 70%, white);opacity:.6"/>
+        <use href="#cloud" x="520" y="292" width="330" height="82" style="color:color-mix(in oklab, var(--sky2) 80%, white);opacity:.75"/>
+        <use href="#cloud" x="900" y="140" width="290" height="72" style="color:color-mix(in oklab, var(--sky1) 70%, white);opacity:.55"/>
         <use href="#fuji" x="260" y="250" width="940" height="376"/>
         <rect y="440" width="1200" height="60" style="fill:var(--sky2);opacity:.45"/>
         <path d="M0 520 Q160 430 330 470 T620 470 Q760 440 900 490 T1200 470 V640 H0 Z" style="fill:color-mix(in oklab, var(--far) 45%, var(--near))"/>
-        <use href="#pagoda" x="585" y="318" width="128" height="235" style="color:var(--near)"/>
+        <use href="#pagoda" x="560" y="352" width="108" height="198" style="color:var(--near)"/>
         <path d="M0 570 Q220 530 430 556 T850 548 T1200 560 V640 H0 Z" style="fill:var(--near)"/>
-        <use href="#torii" x="905" y="372" width="230" height="196" style="color:var(--pr)"/>
-        <!-- Rama de cerezo, entrando por la esquina superior derecha -->
-        <g transform="translate(1200 0) scale(-1 1)">
-        <path d="M-10 40 Q120 60 210 112 T400 150 M150 80 Q190 40 250 34 M290 128 Q330 170 380 182" style="fill:none;stroke:var(--near);stroke-width:7;stroke-linecap:round"/>
-        <g style="color:var(--petal)">
-          <use href="#blossom" x="70" y="22" width="44" height="44"/><use href="#blossom" x="150" y="62" width="34" height="34"/>
-          <use href="#blossom" x="230" y="18" width="40" height="40"/><use href="#blossom" x="262" y="96" width="46" height="46"/>
-          <use href="#blossom" x="340" y="128" width="36" height="36"/><use href="#blossom" x="372" y="164" width="30" height="30"/>
-          <use href="#blossom" x="196" y="94" width="26" height="26"/><use href="#blossom" x="20" y="54" width="28" height="28"/>
-        </g>
-        </g>
+        <use href="#torii" x="1010" y="420" width="170" height="145" style="color:var(--pr)"/>
+        <use href="#athlete" x="750" y="262" width="220" height="293" style="color:var(--near)"/>
       </svg>
-      <div class="petals" data-petals="18"></div>
+      <div class="embers" data-embers="22"></div>
     </div>
     <div class="hero-scrim" aria-hidden="true"></div>
 
-    <div class="nobori" aria-label="Lema: mente, técnica y cuerpo">
-      <span class="tate">心技体</span>
-      <small>mente · técnica · cuerpo</small>
+    <div class="nobori" aria-label="Lema: rompe tus límites">
+      <span class="tate">限界突破</span>
+      <small>rompe tus límites</small>
     </div>
 
     <div class="wrap hero-in">
       <p class="eyebrow rise"><span class="jp" aria-hidden="true">道場</span>Entrenamiento personal en Madrid</p>
-      <h1 class="rise">Tu entrenamiento no se parece al de nadie</h1>
+      <h1 class="rise">Forja tu cuerpo. Rompe tus límites.</h1>
       <p class="lede rise">
-        Nada de rutinas genéricas descargadas de internet. Diseño tu plan
-        mirando tu historial, tus lesiones y los días que puedes entrenar de
-        verdad. Y lo ajusto cada semana con lo que registras.
+        Aquí no hay rutinas copiadas de internet ni atajos. Diseño tu plan con
+        tu historial, tus lesiones y los días que puedes entrenar de verdad, y
+        lo ajusto cada semana según lo que rindes. Tú pones el sudor; yo, el
+        método.
       </p>
       <div class="cta row rise">
-        <button class="btn">Solicitar una plaza <span class="k" aria-hidden="true">入門</span></button>
+        <button class="btn">Entra al dojo <span class="k" aria-hidden="true">入門</span></button>
         <button class="btn ghost">Ver cómo funciona</button>
       </div>
       <div class="stats rise">
@@ -241,7 +245,7 @@
     <div class="wrap">
       <div class="sec-head">
         <p class="eyebrow"><span class="jp" aria-hidden="true">道</span>Servicios</p>
-        <h2>Elige tu camino</h2>
+        <h2>Elige tu disciplina</h2>
         <p class="lede">Todos incluyen rutina personalizada, vídeos de cada ejercicio y seguimiento de tu progreso.</p>
       </div>
       <div class="demo-flag" style="margin-bottom:26px">
@@ -351,7 +355,7 @@
         </div>
         <div class="row" style="margin-top:22px; gap:14px">
           <span class="hanko lg round solid" aria-hidden="true">先生</span>
-          <p class="note" style="font-style:normal">«No hay atajos. Hay un plan, y alguien que lo ajusta contigo.»</p>
+          <p class="note" style="font-style:normal">«El esfuerzo de hoy es la fuerza de mañana. Con cabeza: aquí nadie se lesiona por ego.»</p>
         </div>
       </div>
     </div>
@@ -460,7 +464,7 @@
     <div class="wrap" style="max-width:760px">
       <div class="sec-head">
         <p class="eyebrow"><span class="jp" aria-hidden="true">入門</span>Contacto</p>
-        <h2>Llama a la puerta del dojo</h2>
+        <h2>¿Preparado? Llama a la puerta del dojo</h2>
         <p class="lede">No hay registro automático: leo cada solicitud y respondo yo. Si encajamos, te abro la cuenta.</p>
       </div>
       <form class="formgrid card washi" onsubmit="return false">
@@ -553,7 +557,7 @@
               <path d="M0 210 Q100 186 200 200 T390 196 V250 H0 Z" style="fill:var(--near)"/>
               <use href="#torii" x="125" y="96" width="140" height="119" style="color:color-mix(in oklab, var(--near) 75%, var(--pr))"/>
             </svg>
-            <div class="petals" data-petals="7"></div>
+            <div class="embers" data-embers="9"></div>
           </div>
           <div class="appbody login-body">
             <div style="text-align:center">
@@ -641,7 +645,7 @@
             </div>
 
             <div class="scroll today">
-              <span class="eyebrow"><span class="jp" aria-hidden="true">今日の修行</span>Hoy toca</span>
+              <span class="eyebrow"><span class="jp" aria-hidden="true">今日の修行</span>Hoy se entrena</span>
               <h4>Día 1 — Empuje</h4>
               <p class="muted small" style="margin-top:4px">3 ejercicios · unos 55 minutos</p>
               <button class="btn" style="width:100%; margin-top:13px" data-go="entrenar">Empezar <span class="k" aria-hidden="true">始め!</span></button>
@@ -1312,9 +1316,9 @@
               <div class="card washi">
                 <b class="small-b">Portada</b>
                 <div class="stack" style="gap:11px; margin-top:12px">
-                  <div class="inp"><label for="wc1">Titular</label><input id="wc1" value="Tu entrenamiento no se parece al de nadie"></div>
-                  <div class="inp"><label for="wc2">Texto de apoyo</label><textarea id="wc2" rows="3">Nada de rutinas genéricas descargadas de internet. Diseño tu plan mirando tu historial, tus lesiones y los días que puedes entrenar de verdad.</textarea></div>
-                  <div class="inp"><label for="wc3">Lema vertical</label><input id="wc3" value="心技体 — mente, técnica, cuerpo"></div>
+                  <div class="inp"><label for="wc1">Titular</label><input id="wc1" value="Forja tu cuerpo. Rompe tus límites."></div>
+                  <div class="inp"><label for="wc2">Texto de apoyo</label><textarea id="wc2" rows="3">Aquí no hay rutinas copiadas de internet ni atajos. Diseño tu plan con tu historial, tus lesiones y los días que puedes entrenar de verdad.</textarea></div>
+                  <div class="inp"><label for="wc3">Lema vertical</label><input id="wc3" value="限界突破 — rompe tus límites"></div>
                 </div>
               </div>
               <div class="card washi">
@@ -1365,7 +1369,7 @@
 
 </main>
 
-<script src="js/sakura.js"></script>
+<script src="js/brasas.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>
