@@ -1,0 +1,88 @@
+/* ===========================================================================
+   GUIÑOS DE ANIME — solo para el prototipo.
+   Elementos que un fan reconoce, sin personajes, logos, nombres de series ni
+   ilustraciones oficiales. Todo vive aquí y en js/guinos.js para poder
+   quitarlo de una vez; la lista está en el README.
+   =========================================================================== */
+
+/* Esferas de la semana (una por sesión, siete en total) ----------------- */
+.orbs { display: flex; justify-content: space-between; gap: 4px; margin-top: 12px; }
+.orb { width: 36px; height: 36px; flex: 0 0 auto; }
+.orb .body { fill: url(#g-orb); stroke: #b4540c; stroke-width: 1.5; }
+.orb .shine { fill: #fff; opacity: .55; }
+.orb .star { fill: #d42a1e; }
+.orb.off { filter: grayscale(1); opacity: .35; }
+.orb.on { filter: drop-shadow(0 0 6px rgba(255, 150, 40, .65)); }
+
+/* «¡Más de 8000!» pegado al nivel de poder ------------------------------- */
+.power { position: relative; }
+.over {
+  position: absolute; right: 10px; top: 76px; z-index: 2;
+  background: #ffd23f; color: #140c0a; border: 2.5px solid #140c0a;
+  font-family: var(--display); font-weight: var(--dw); font-size: 0.86rem; line-height: 1;
+  padding: 7px 9px; transform: rotate(8deg); box-shadow: 3px 3px 0 #140c0a;
+}
+
+/* Bandana con placa de metal grabada ------------------------------------- */
+.hitai { display: inline-flex; align-items: center; height: 30px; background: #1f2636; border-radius: 4px; padding: 0 9px 0 4px; gap: 7px; color: #e8ebf1; font-size: 0.72rem; font-weight: 800; white-space: nowrap; }
+.hitai .plate {
+  display: grid; place-items: center; width: 38px; height: 22px; border-radius: 3px;
+  background: linear-gradient(160deg, #f4f6f9, #a3a9b3 55%, #d9dde3);
+  color: #3a404b; font-family: var(--display); font-weight: var(--dw); font-size: 0.85rem;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0 -1px 0 rgba(0, 0, 0, .25);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .25);
+}
+
+/* Forma (壱ノ型) sobre cada ejercicio ------------------------------------ */
+.kata { display: block; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--pr); font-weight: 800; }
+.kata .jp { letter-spacing: 0.02em; margin-right: 4px; }
+
+/* Franja de cuadros rojos y negros (ichimatsu) --------------------------- */
+.checker {
+  height: 26px; width: 100%;
+  background: repeating-conic-gradient(var(--pr) 0 25%, var(--near) 0 50%) 0 0 / 26px 26px;
+}
+
+/* Estallido especial cuando todas las series salen: 黒閃 ------------------ */
+.burst.kokusen polygon { fill: #0b0708; stroke: #e0261b; stroke-width: 4; }
+.burst.kokusen b { color: #fff; text-shadow: 0 0 8px #e0261b, 0 0 2px #e0261b; font-size: 1.7rem; }
+.burst.kokusen small {
+  position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); white-space: nowrap;
+  background: #0b0708; color: #fff; font-size: 0.66rem; font-weight: 800; padding: 3px 8px; border: 1.5px solid #e0261b;
+}
+.burst.kokusen { width: 150px; height: 150px; animation-duration: 1.5s; }
+
+/* Aura dorada de récord personal ------------------------------------------ */
+.aura-card { position: relative; overflow: hidden; isolation: isolate; text-align: center; }
+.aura {
+  position: absolute; left: 50%; top: 50%; width: 260px; height: 260px; margin: -130px 0 0 -130px; z-index: -1;
+  background: repeating-conic-gradient(from 0deg, rgba(255, 214, 64, .55) 0 5deg, rgba(255, 214, 64, 0) 5deg 14deg);
+  -webkit-mask: radial-gradient(circle, transparent 18%, #000 30%, transparent 70%);
+          mask: radial-gradient(circle, transparent 18%, #000 30%, transparent 70%);
+  animation: aura 1.6s ease-in-out infinite alternate;
+}
+@keyframes aura { from { transform: scale(.94) rotate(0); opacity: .7; } to { transform: scale(1.06) rotate(6deg); opacity: 1; } }
+.aura-card b.big { display: block; font-family: var(--display); font-weight: var(--dw); font-size: 1.55rem; line-height: 1.15; color: #e6a700; -webkit-text-stroke: 1px #140c0a; paint-order: stroke fill; }
+
+/* Cartel de «SE BUSCA» -------------------------------------------------- */
+.wanted {
+  background: #ead9b5; color: #3a2814; border-radius: 4px; padding: 16px 18px 14px;
+  text-align: center; transform: rotate(-1.2deg);
+  box-shadow: 0 10px 24px -12px rgba(0, 0, 0, .6), inset 0 0 40px rgba(120, 80, 30, .35);
+  background-image: var(--grain);
+  font-family: Georgia, "Times New Roman", serif;
+}
+.wanted .w-title { font-family: var(--display); font-weight: var(--dw); font-size: 2.3rem; line-height: 1; letter-spacing: 0.04em; }
+.wanted .w-photo {
+  margin: 10px auto 8px; height: 150px; border: 3px solid #3a2814; border-radius: 2px; position: relative; overflow: hidden;
+  background: radial-gradient(circle at 50% 42%, var(--sun) 0 48px, transparent 49px), linear-gradient(var(--sky1), var(--sky2));
+}
+.wanted .w-photo svg { position: absolute; left: 50%; bottom: 4px; width: 100px; height: 133px; margin-left: -50px; color: #140c0a; }
+.wanted .w-sub { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.18em; }
+.wanted .w-name { font-family: var(--display); font-weight: var(--dw); font-size: 1.05rem; margin-top: 2px; line-height: 1.2; }
+.wanted .w-bounty { font-family: var(--display); font-weight: var(--dw); font-size: 1.55rem; margin-top: 4px; }
+.wanted .w-stats { display: flex; justify-content: center; gap: 16px; margin-top: 8px; padding-top: 8px; border-top: 1.5px solid rgba(58, 40, 20, .4); font-family: var(--body); font-size: 0.72rem; }
+.wanted .w-stats b { display: block; font-size: 1.05rem; }
+
+/* Etiqueta de servicio con tono de «arco» -------------------------------- */
+.arc { display: inline-block; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--pr); margin-top: -4px; }

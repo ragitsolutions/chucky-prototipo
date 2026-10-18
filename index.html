@@ -16,6 +16,9 @@
 <link rel="stylesheet" href="css/publica.css">
 <link rel="stylesheet" href="css/alumno.css">
 <link rel="stylesheet" href="css/panel.css">
+<!-- Guiños de anime: solo para el prototipo. Quitar esta línea y el script
+     js/guinos.js del final los elimina. -->
+<link rel="stylesheet" href="css/guinos.css">
 </head>
 <body>
 
@@ -32,6 +35,9 @@
     <radialGradient id="g-glow">
       <stop offset="0" style="stop-color:var(--sun);stop-opacity:.6"/>
       <stop offset="1" style="stop-color:var(--sun);stop-opacity:0"/>
+    </radialGradient>
+    <radialGradient id="g-orb" cx=".38" cy=".32" r=".75">
+      <stop offset="0" stop-color="#ffe7a1"/><stop offset=".45" stop-color="#ffa62b"/><stop offset="1" stop-color="#e2680a"/>
     </radialGradient>
     <linearGradient id="g-wood" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" style="stop-color:color-mix(in oklab, var(--a2) 75%, var(--sf))"/>
@@ -255,6 +261,7 @@
       <div class="grid g3 plans">
         <article class="scroll washi">
           <div class="between"><h3>Online</h3><span class="hanko" aria-hidden="true">壱</span></div>
+          <span class="arc">Arco de entrenamiento en solitario</span>
           <p class="muted">Tu rutina en el móvil, revisada cada semana. Hablamos por chat siempre que lo necesites.</p>
           <ul class="ticks">
             <li>Rutina actualizada cada semana</li>
@@ -267,6 +274,7 @@
         <article class="scroll washi featured">
           <span class="ribbon">Más elegido</span>
           <div class="between"><h3>Presencial</h3><span class="hanko solid" aria-hidden="true">弐</span></div>
+          <span class="arc">Arco con tu sensei al lado</span>
           <p class="muted">Dos sesiones por semana conmigo en sala, más tu plan para los días que entrenas solo.</p>
           <ul class="ticks">
             <li>2 sesiones semanales dirigidas</li>
@@ -278,6 +286,7 @@
         </article>
         <article class="scroll washi">
           <div class="between"><h3>Readaptación</h3><span class="hanko" aria-hidden="true">参</span></div>
+          <span class="arc">Arco de recuperación</span>
           <p class="muted">Para volver después de una lesión, coordinándome con tu fisioterapeuta.</p>
           <ul class="ticks">
             <li>Valoración inicial completa</li>
@@ -366,7 +375,7 @@
     <div class="wrap">
       <div class="sec-head">
         <p class="eyebrow"><span class="jp" aria-hidden="true">流れ</span>Cómo funciona</p>
-        <h2>Tu historia en cuatro viñetas</h2>
+        <h2>Tu arco de entrenamiento, en cuatro viñetas</h2>
       </div>
       <div class="manga">
         <article class="panel-m p1">
@@ -401,7 +410,7 @@
     </div>
   </div>
 
-  <svg class="wave" aria-hidden="true"><rect width="100%" height="100%"/></svg>
+  <div class="checker" aria-hidden="true"></div>
 
   <!-- TESTIMONIOS -->
   <div class="band">
@@ -442,6 +451,7 @@
       <details class="faq"><summary><span class="hanko sm" aria-hidden="true">問</span>¿Puedo entrenar en cualquier gimnasio?</summary><p><span class="jp" aria-hidden="true">答</span>Sí. En la valoración me dices qué material tienes disponible y la rutina se construye con eso. Si solo tienes mancuernas y una barra, trabajamos con eso.</p></details>
       <details class="faq"><summary><span class="hanko sm" aria-hidden="true">問</span>¿Qué pasa si me lesiono o me pongo enfermo?</summary><p><span class="jp" aria-hidden="true">答</span>Me lo dices por el chat y adaptamos o pausamos. Pausar la cuenta no cuesta nada y tu histórico se conserva entero.</p></details>
       <details class="faq"><summary><span class="hanko sm" aria-hidden="true">問</span>¿Cómo se registran mis datos de salud?</summary><p><span class="jp" aria-hidden="true">答</span>El peso, las medidas y el historial de lesiones son datos de categoría especial. Solo se recogen con tu consentimiento explícito, puedes descargarlos cuando quieras y puedes pedir que se borren.</p></details>
+      <details class="faq"><summary><span class="hanko sm" aria-hidden="true">問</span>¿Voy a entrenar con cien veces la gravedad?</summary><p><span class="jp" aria-hidden="true">答</span>No hace falta. Empezamos con la de la Tierra y subimos cuando tu cuerpo lo pida. Primero la técnica; la gravedad extra, después.</p></details>
       <details class="faq"><summary><span class="hanko sm" aria-hidden="true">問</span>¿Hay permanencia?</summary><p><span class="jp" aria-hidden="true">答</span>No. Se paga mes a mes y puedes dejarlo cuando quieras avisando con quince días.</p></details>
     </div>
   </div>
@@ -509,6 +519,11 @@
           </div>
         </div>
         <div class="demo-flag" style="margin-top:24px">
+          Los guiños a series de anime (esferas, nivel de poder, bandana,
+          cartel de «Se busca», formas de respiración, destello negro…) son
+          solo para este prototipo. Antes de la web real se revisan uno a uno.
+        </div>
+        <div class="demo-flag" style="margin-top:10px">
           Los textos legales aún no se pueden redactar: falta decidir si el
           responsable del tratamiento es el entrenador como autónomo o una
           sociedad.
@@ -527,7 +542,7 @@
     <div class="sec-head">
       <p class="eyebrow"><span class="jp" aria-hidden="true">弟子</span>Lo que ve el alumno</p>
       <h2>Tu camino en el dojo, en el bolsillo</h2>
-      <p class="lede">Elige una pantalla para verla dentro del móvil. Las series, el «¡ドン!» y el temporizador del modo entrenamiento funcionan de verdad.</p>
+      <p class="lede">Elige una pantalla para verla dentro del móvil. Las series, el «¡ドン!» y el temporizador del modo entrenamiento funcionan de verdad. Marca las cuatro series y verás qué pasa.</p>
     </div>
 
     <div class="student-layout">
@@ -621,33 +636,26 @@
         <div class="screen on" id="s-hoy">
           <div class="appbar">
             <div><span class="muted small">Lunes, 28 de septiembre</span><h3>Hola, Lucía</h3></div>
-            <span class="rank" title="Rango actual"><span class="jp" aria-hidden="true">弟子</span>Discípula</span>
+            <span class="hitai" title="Rango actual"><span class="plate" aria-hidden="true">道</span>Discípula</span>
           </div>
           <div class="appbody">
             <div class="power speed hot">
               <div class="between"><span class="label">Nivel de poder</span><span class="jp lvl">Nv. 12</span></div>
               <b class="power-num">12.450</b>
+              <span class="over" aria-hidden="true">¡Más de 8000!</span>
               <div class="power-bar" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" aria-label="Progreso hacia el siguiente rango"><i style="width:72%"></i></div>
               <p class="small">Faltan 3550 para <b>Guerrera</b> <span class="jp" aria-hidden="true">武人</span></p>
             </div>
 
             <div class="minicard">
-              <div class="between"><b class="small-b">Racha de 5 sesiones</b><span class="muted small">¡No apagues los farolillos!</span></div>
-              <div class="lanterns" aria-label="5 de 7 sesiones de la semana completadas">
-                <svg viewBox="0 0 40 60" aria-hidden="true"><use href="#lantern"/></svg>
-                <svg viewBox="0 0 40 60" aria-hidden="true"><use href="#lantern"/></svg>
-                <svg viewBox="0 0 40 60" aria-hidden="true"><use href="#lantern"/></svg>
-                <svg viewBox="0 0 40 60" aria-hidden="true"><use href="#lantern"/></svg>
-                <svg viewBox="0 0 40 60" aria-hidden="true"><use href="#lantern"/></svg>
-                <svg viewBox="0 0 40 60" class="off" aria-hidden="true"><use href="#lantern"/></svg>
-                <svg viewBox="0 0 40 60" class="off" aria-hidden="true"><use href="#lantern"/></svg>
-              </div>
+              <div class="between"><b class="small-b">Esferas de la semana: 5 de 7</b><span class="muted small">Reúne las 7</span></div>
+              <div class="orbs" data-orbs="5" role="img" aria-label="5 de 7 sesiones de la semana completadas"></div>
             </div>
 
             <div class="scroll today">
               <span class="eyebrow"><span class="jp" aria-hidden="true">今日の修行</span>Hoy se entrena</span>
               <h4>Día 1 — Empuje</h4>
-              <p class="muted small" style="margin-top:4px">3 ejercicios · unos 55 minutos</p>
+              <p class="muted small" style="margin-top:4px">Respiración del hierro · 3 formas · unos 55 minutos</p>
               <button class="btn" style="width:100%; margin-top:13px" data-go="entrenar">Empezar <span class="k" aria-hidden="true">始め!</span></button>
             </div>
 
@@ -689,12 +697,13 @@
             <div class="row" style="gap:6px">
               <span class="chip">Día 1</span><span class="chip line">Día 2</span><span class="chip line">Día 3</span>
             </div>
-            <p class="muted small">Prioridad al press de banca. Accesorios sin llegar al fallo.</p>
+            <p class="muted small">Respiración del hierro. Prioridad al press de banca; accesorios sin llegar al fallo.</p>
 
             <div class="minicard">
               <div class="exrow">
                 <span class="thumb play"><svg viewBox="0 0 100 40" aria-hidden="true"><use href="#barbell"/></svg></span>
                 <div style="flex:1">
+                  <span class="kata"><span class="jp" aria-hidden="true">壱ノ型</span>Primera forma</span>
                   <b class="small-b">Press de banca con barra</b>
                   <div class="muted mono xs">4 × 5 · 47,5 kg · 3 min</div>
                 </div>
@@ -709,6 +718,7 @@
               <div class="exrow">
                 <span class="thumb"><svg viewBox="0 0 100 40" aria-hidden="true"><use href="#barbell"/></svg></span>
                 <div style="flex:1">
+                  <span class="kata"><span class="jp" aria-hidden="true">弐ノ型</span>Segunda forma</span>
                   <b class="small-b">Press militar de pie</b>
                   <div class="muted mono xs">3 × 8-10 · 25 kg · 2 min</div>
                 </div>
@@ -723,6 +733,7 @@
               <div class="exrow">
                 <span class="thumb"><svg viewBox="0 0 40 44" aria-hidden="true"><use href="#kettlebell"/></svg></span>
                 <div style="flex:1">
+                  <span class="kata"><span class="jp" aria-hidden="true">参ノ型</span>Tercera forma</span>
                   <b class="small-b">Plancha frontal</b>
                   <div class="muted mono xs">3 × 45 s · 1 min</div>
                 </div>
@@ -737,7 +748,7 @@
         <!-- MODO ENTRENAMIENTO -->
         <div class="screen" id="s-entrenar">
           <div class="appbar">
-            <div><span class="muted small">Ejercicio 1 de 3</span><h3>Press de banca</h3></div>
+            <div><span class="muted small"><span class="jp" aria-hidden="true">壱ノ型</span> Forma 1 de 3</span><h3>Press de banca</h3></div>
             <span class="chip ok" id="syncchip">✓ Guardado</span>
           </div>
           <div class="appbody" style="position:relative">
@@ -795,7 +806,7 @@
                 <text x="122" y="121" style="font:700 12px var(--body);fill:var(--fg)">Estás aquí</text>
                 <path d="M0 190 Q90 170 165 182 T330 178 V190 Z" style="fill:var(--near)"/>
               </svg>
-              <div class="between small" style="margin-top:8px"><span><b>Peldaño 12</b> de 20</span><span class="muted">Siguiente rango: Guerrera</span></div>
+              <div class="between small" style="margin-top:8px"><span><b>Peldaño 12</b> de 20</span><span class="muted">Siguiente: Guerrera · Cima: Pilar <span class="jp" aria-hidden="true">柱</span></span></div>
             </div>
 
             <div class="minicard">
@@ -804,10 +815,17 @@
                 <div class="badge"><span class="hanko round solid" aria-hidden="true">初</span><span>Primera sesión</span></div>
                 <div class="badge"><span class="hanko round solid" aria-hidden="true">十</span><span>Racha de 10</span></div>
                 <div class="badge"><span class="hanko round solid" aria-hidden="true">達成</span><span>Objetivo cumplido</span></div>
-                <div class="badge"><span class="hanko round solid" aria-hidden="true">記録</span><span>Récord personal</span></div>
-                <div class="badge locked"><span class="hanko round off" aria-hidden="true">百</span><span>100 sesiones</span></div>
-                <div class="badge locked"><span class="hanko round off" aria-hidden="true">一年</span><span>Un año en el dojo</span></div>
+                <div class="badge"><span class="hanko round solid" aria-hidden="true">黒閃</span><span>Destello negro · serie perfecta</span></div>
+                <div class="badge locked"><span class="hanko round off" aria-hidden="true">重</span><span>Gravedad ×10 · 100 sesiones</span></div>
+                <div class="badge locked"><span class="hanko round off" aria-hidden="true">分身</span><span>Clones de sombra · 3 meses sin fallar</span></div>
               </div>
+            </div>
+
+            <div class="minicard aura-card">
+              <span class="aura" aria-hidden="true"></span>
+              <span class="eyebrow" style="justify-content:center">Récord personal</span>
+              <b class="big">¡Transformación dorada!</b>
+              <p class="small" style="margin-top:4px">47,5 kg en press de banca: 2,5 kg más que tu anterior mejor marca.</p>
             </div>
 
             <div class="minicard">
@@ -889,19 +907,14 @@
         <div class="screen" id="s-perfil">
           <div class="appbar"><h3>Tu perfil</h3></div>
           <div class="appbody">
-            <div class="dojo-card washi">
-              <div class="between" style="align-items:flex-start">
-                <div>
-                  <span class="eyebrow"><span class="jp" aria-hidden="true">会員証</span>Carné del dojo</span>
-                  <b class="name">Lucía Ramírez Ortiz</b>
-                  <span class="muted xs">Alumna desde marzo de 2026</span>
-                </div>
-                <span class="hanko lg solid v" aria-hidden="true">弟子</span>
-              </div>
-              <div class="row" style="gap:16px; margin-top:12px">
-                <div class="stat"><b>12</b><span>nivel</span></div>
-                <div class="stat"><b>48</b><span>sesiones</span></div>
-                <div class="stat"><b>4</b><span>técnicas</span></div>
+            <div class="wanted" role="group" aria-label="Cartel de se busca: Lucía la Imparable Ramírez, recompensa 12.450.000">
+              <div class="w-title">SE BUSCA</div>
+              <div class="w-photo" aria-hidden="true"><svg viewBox="0 0 240 320"><use href="#athlete"/></svg></div>
+              <div class="w-sub">VIVA O ENTRENANDO</div>
+              <div class="w-name">Lucía «la Imparable» Ramírez</div>
+              <div class="w-bounty">฿ 12.450.000</div>
+              <div class="w-stats">
+                <span><b>12</b>nivel</span><span><b>48</b>sesiones</span><span><b>4</b>técnicas</span><span><b>弟子</b>rango</span>
               </div>
             </div>
             <div class="minicard stack" style="gap:0">
@@ -930,6 +943,7 @@
             </div>
             <div>
               <h4>Tu sensei está preparando tu camino</h4>
+              <p class="jp" style="color:var(--pr); margin-top:6px">«No me rindo: ese es mi camino.»</p>
               <p class="muted small" style="margin-top:7px">
                 Chucky está preparando tu plan. En cuanto lo publique aparecerá
                 aquí con los ejercicios de cada día.
@@ -961,7 +975,7 @@
     <div class="desk">
       <div class="desk-top">
         <svg viewBox="0 0 200 170" aria-hidden="true"><use href="#torii"/></svg>
-        <b class="jp">道場</b><span>Panel del sensei</span>
+        <b class="jp">領域展開</b><span>Panel del sensei · expansión de dominio</span>
         <span class="mono url">chuckyfitness.es/admin</span>
       </div>
       <div class="desk-body">
@@ -1023,7 +1037,7 @@
                   </tr>
                   <tr>
                     <td><div class="row" style="gap:9px; flex-wrap:nowrap"><span class="avatar">NB</span><div><b>Nerea Beltrán</b><div class="muted xs">Desde nov. 2025</div></div></div></td>
-                    <td><span class="rank sm"><span class="jp" aria-hidden="true">武人</span>Nv. 21</span></td>
+                    <td><span class="rank sm"><span class="jp" aria-hidden="true">柱</span>Nv. 21</span></td>
                     <td><span class="chip line">Pausada</span></td>
                     <td>Readaptación (completada)</td>
                     <td class="mono" style="color:var(--dg)">Hace 61 días</td>
@@ -1038,7 +1052,7 @@
           <div class="pane" id="p-ficha">
             <div class="between" style="margin-bottom:14px">
               <div class="row" style="gap:11px; flex-wrap:nowrap"><span class="avatar" style="width:48px;height:48px;font-size:0.95rem">LR</span><div><h3>Lucía Ramírez Ortiz</h3><span class="muted small">lucia@ejemplo.es · 611 111 111</span></div></div>
-              <div class="row"><span class="rank"><span class="jp" aria-hidden="true">弟子</span>Discípula · Nv. 12</span><span class="chip ok">Activa</span></div>
+              <div class="row"><span class="hitai"><span class="plate" aria-hidden="true">道</span>Discípula · Nv. 12</span><span class="chip ok">Activa</span></div>
             </div>
 
             <div class="dtabs" role="tablist">
@@ -1212,7 +1226,7 @@
               </div>
               <div>
                 <div class="day">
-                  <div class="day-h"><b><span class="jp" aria-hidden="true">一</span> Día 1 — Empuje</b><div class="row"><button class="btn sm ghost">Renombrar</button><button class="btn sm ghost">Eliminar</button></div></div>
+                  <div class="day-h"><b><span class="jp" aria-hidden="true">一</span> Día 1 — Empuje · Respiración del hierro</b><div class="row"><button class="btn sm ghost">Renombrar</button><button class="btn sm ghost">Eliminar</button></div></div>
                   <div class="day-b">
                     <div class="slot">
                       <div><b class="small-b">Press de banca con barra</b><div class="muted xs">Pecho · Tríceps · Hombro</div></div>
@@ -1371,5 +1385,6 @@
 
 <script src="js/brasas.js"></script>
 <script src="js/app.js"></script>
+<script src="js/guinos.js"></script>
 </body>
 </html>

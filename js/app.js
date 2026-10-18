@@ -79,26 +79,35 @@
   var syncTimer;
   var BURST = '<svg viewBox="0 0 100 100" aria-hidden="true"><polygon points="50,2 58,30 84,10 70,38 98,36 74,52 96,70 66,64 72,94 52,72 36,98 34,68 6,82 24,58 2,42 30,38 14,12 42,28"/></svg><b>ドン!</b>';
 
-  function burstAt(button) {
+  /* fx: { cls, html, ms } opcional para un estallido distinto */
+  function burstAt(button, fx) {
     if (calm) return;
+    fx = fx || { cls: "", html: BURST, ms: 950 };
     var host = button.closest(".appbody");
     var hb = host.getBoundingClientRect();
     var bb = button.getBoundingClientRect();
-    var fx = document.createElement("div");
-    fx.className = "burst";
-    fx.innerHTML = BURST;
-    fx.style.left = (bb.left - hb.left + bb.width / 2 - 65) + "px";
-    fx.style.top = (bb.top - hb.top + bb.height / 2 - 65) + "px";
-    host.appendChild(fx);
-    setTimeout(function () { fx.remove(); }, 950);
+    var el = document.createElement("div");
+    el.className = "burst " + fx.cls;
+    el.innerHTML = fx.html;
+    host.appendChild(el);
+    /* Centrado en el botón, pero sin salirse de la pantalla del móvil */
+    var x = bb.left - hb.left + bb.width / 2 - el.offsetWidth / 2;
+    el.style.left = Math.max(20, Math.min(x, hb.width - el.offsetWidth - 20)) + "px";
+    el.style.top = (bb.top - hb.top + bb.height / 2 - el.offsetHeight / 2) + "px";
+    setTimeout(function () { el.remove(); }, fx.ms);
   }
 
-  document.querySelectorAll(".tick").forEach(function (t) {
+  var ticks = document.querySelectorAll(".tick");
+  ticks.forEach(function (t) {
     t.addEventListener("click", function () {
       var on = t.getAttribute("aria-pressed") === "true";
       t.setAttribute("aria-pressed", String(!on));
       t.closest(".setrow").classList.toggle("done", !on);
-      if (!on) burstAt(t);
+      if (!on) {
+        var all = Array.prototype.every.call(ticks, function (x) { return x.getAttribute("aria-pressed") === "true"; });
+        /* Con todas las series hechas, js/guinos.js puede poner su propio estallido */
+        burstAt(t, all ? window.cfPerfectBurst : null);
+      }
 
       /* Enseña el ciclo real: guardando -> guardado */
       sync.className = "chip line";
