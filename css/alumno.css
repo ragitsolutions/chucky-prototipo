@@ -140,7 +140,7 @@
 .setrow:last-child { border-bottom: 0; }
 .setrow .idx {
   width: 28px; height: 28px; border-radius: 6px; background: var(--sf2); flex: 0 0 auto;
-  display: grid; place-items: center; font-family: var(--display); font-weight: var(--dw); font-size: 0.85rem;
+  display: grid; place-items: center; font-family: var(--kanji); font-weight: var(--kw); font-size: 0.85rem;
 }
 .setrow input[type="text"] { width: 56px; background: var(--bg); border: 1px solid var(--ln); border-radius: 6px; padding: 8px 6px; text-align: center; font-size: 0.86rem; min-height: 40px; }
 .tick {

@@ -148,3 +148,10 @@
 /* Pincel: brocha latina para el texto y caligrafía japonesa para los kanji */
 :root[data-type="pincel"] { --display: "Kaushan Script", "Yuji Syuku", "Yu Mincho", cursive; --dw: 400; }
 :root { --body: "Inter", system-ui, -apple-system, sans-serif; }
+
+/* Kanji pequeños (rótulos, sellos, botones). Dela Gothic One empasta los
+   trazos por debajo de ~30 px, así que con el titular Manga los kanji
+   pequeños van en mincho. Los grandes (estandarte, onomatopeyas) siguen con
+   el titular elegido. */
+:root { --kanji: "Shippori Mincho", "Yu Mincho", serif; --kw: 800; }
+:root[data-type="pincel"] { --kanji: "Yuji Syuku", "Shippori Mincho", serif; --kw: 400; }
