@@ -81,8 +81,7 @@ Para volver a la actual: `git checkout main`.
 
 1. En **hPanel → Sitios web → (tu dominio o subdominio) → Avanzado → Git**.
 2. En **Repositorio**, pega la dirección del repositorio de GitHub.
-3. En **Rama**, pon `prototipo`. (`main` es desde octubre de 2026 la aplicación
-   real en Next.js, que no se puede servir como web estática.)
+3. En **Rama**, pon `main`.
 4. En **Directorio**, déjalo vacío para que se instale en `public_html`, o
    escribe una subcarpeta si el dominio ya tiene otra web.
 5. Pulsa **Crear** y después **Desplegar**.
